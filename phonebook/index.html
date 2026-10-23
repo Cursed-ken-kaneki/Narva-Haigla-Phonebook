@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="et" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SA Narva Haigla Telefonikataloog</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = { darkMode: 'class' }
+    </script>
+    <!-- SheetJS (XLSX Export/Import) -->
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <!-- jsPDF & AutoTable -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.5.28/jspdf.plugin.autotable.min.js"></script>
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        mark { background-color: #fef08a; color: inherit; padding: 0.1em 0.2em; border-radius: 0.25rem; }
+        .dark mark { background-color: #713f12; color: #fef08a; }
+        /* Sticky first column */
+        .sticky-col-header {
+            position: sticky;
+            left: 0;
+            z-Index: 30;
+        }
+        .sticky-col-cell {
+            position: sticky;
+            left: 0;
+            z-Index: 10;
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-950 text-slate-800 dark:text-slate-100 min-h-screen flex flex-col justify-between transition-colors duration-200">
+
+    <!-- HEADER -->
+    <header class="bg-gradient-to-r from-indigo-700 via-blue-700 to-indigo-800 dark:from-slate-900 dark:via-indigo-950 dark:to-slate-900 text-white shadow-lg border-b border-white/15">
+        <div class="max-w-7xl mx-auto px-6 py-5 flex flex-col sm:flex-row justify-between items-center gap-4">
+            <div class="flex items-center space-x-3.5">
+                <div class="bg-white/10 p-3 rounded-2xl backdrop-blur-md text-2xl">
+                    <i class="fa-solid fa-hospital"></i>
+                </div>
+                <div>
+                    <h1 class="text-xl font-bold tracking-tight" id="headerTitle">SA Narva Haigla Telefonikataloog</h1>
+                    <p class="text-indigo-200 dark:text-slate-400 text-xs font-medium" id="headerSubtitle">Нарвская больница - Телефонный справочник</p>
+                </div>
+            </div>
+
+            <div class="flex items-center space-x-3 flex-wrap justify-center">
+                <!-- Theme Switcher -->
+                <button type="button" onclick="toggleTheme()" class="bg-white/10 hover:bg-white/20 backdrop-blur-md p-2 rounded-xl border border-white/10 transition shadow-sm text-sm" id="themeBtn" title="Тема">🌙</button>
+
+                <!-- Language Switcher -->
+                <div class="flex bg-black/20 backdrop-blur-md p-1 rounded-xl border border-white/10 text-xs">
+                    <button onclick="setLang('et')" id="lang-et" class="px-2.5 py-1 font-semibold rounded-lg transition text-white">ET</button>
+                    <button onclick="setLang('ru')" id="lang-ru" class="px-2.5 py-1 font-semibold rounded-lg transition text-white/70 hover:text-white">RU</button>
+                    <button onclick="setLang('en')" id="lang-en" class="px-2.5 py-1 font-semibold rounded-lg transition text-white/70 hover:text-white">EN</button>
+                </div>
+
+                <div id="userStatusArea" class="text-right px-2">
+                    <span id="currentUserName" class="block font-semibold text-xs">Külaline</span>
+                    <span id="currentUserRole" class="inline-block px-2 py-0.5 text-[10px] font-bold rounded-md bg-white/10 text-indigo-200">Vaatamine</span>
+                </div>
+                
+                <button type="button" id="btnLogin" onclick="openLoginModal()" class="bg-indigo-600 hover:bg-indigo-500 text-white px-3.5 py-2 rounded-xl text-xs font-semibold shadow-sm transition flex items-center space-x-1.5 border border-indigo-400/30">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span id="txtLogin">Logi sisse</span>
+                </button>
+
+                <button type="button" id="btnLogout" onclick="logout()" class="hidden bg-rose-600/80 hover:bg-rose-600 text-white px-3.5 py-2 rounded-xl text-xs font-semibold shadow-sm transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                    <span id="txtLogout">Välju</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN APP CONTENT -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 py-6 w-full flex-1 flex flex-col">
+        
+        <!-- CONTROLS BAR -->
+        <div class="bg-white dark:bg-slate-900 p-4 rounded-2xl shadow-sm border border-slate-200/80 dark:border-slate-800 mb-4 flex flex-col lg:flex-row justify-between items-center gap-4">
+            <div class="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto flex-1">
+                <!-- Search Input -->
+                <div class="relative w-full sm:w-80">
+                    <span class="absolute inset-y-0 left-0 flex items-center pl-3.5 text-slate-400">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                    </span>
+                    <input type="text" id="searchInput" oninput="renderTable()" placeholder="Otsi nime, ametit, numbrit..." 
+                           class="w-full pl-10 pr-4 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-xs font-medium">
+                </div>
+
+                <!-- Department Filter Dropdown -->
+                <select id="departmentFilter" onchange="renderTable()" class="w-full sm:w-64 px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none text-xs font-medium">
+                    <option value="" id="optAllDepts">Kõik osakonnad</option>
+                </select>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex flex-wrap items-center gap-2 w-full lg:w-auto justify-end">
+                <button type="button" id="btnAddContact" onclick="openContactModal()" class="write-allowed hidden bg-indigo-600 hover:bg-indigo-500 text-white px-3 py-2 rounded-xl text-xs font-semibold shadow-sm transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span id="txtAddContact">Lisa kontakt</span>
+                </button>
+
+                <!-- IMPORT EXCEL (ADMIN ONLY) -->
+                <label id="btnImport" class="admin-only hidden bg-amber-600 hover:bg-amber-500 text-white px-3 py-2 rounded-xl text-xs font-semibold shadow-sm transition flex items-center space-x-1.5 cursor-pointer">
+                    <i class="fa-solid fa-file-import"></i>
+                    <span id="txtImport">Impordi Excel</span>
+                    <input type="file" id="excelFileInput" accept=".xlsx, .xls, .csv" onchange="handleFileSelect(event)" class="hidden">
+                </label>
+
+                <!-- HISTORY LOG BUTTON -->
+                <button type="button" onclick="openHistoryModal()" class="admin-only hidden bg-slate-700 hover:bg-slate-600 text-white px-3 py-2 rounded-xl text-xs font-semibold shadow-sm transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-clock-rotate-left"></i>
+                    <span id="txtHistory">Ajalugu</span>
+                </button>
+
+                <!-- DELETE ALL BUTTON (ADMIN ONLY) -->
+                <button type="button" id="btnDeleteAll" onclick="openDeleteAllModal()" class="admin-only hidden bg-rose-600 hover:bg-rose-500 text-white px-3 py-2 rounded-xl text-xs font-semibold shadow-sm transition flex items-center space-x-1.5" title="Kustuta kõik andmed">
+                    <i class="fa-solid fa-triangle-exclamation"></i>
+                    <span id="txtDeleteAll">Kustuta kõik</span>
+                </button>
+
+                <button type="button" onclick="exportToExcel()" class="bg-emerald-600 hover:bg-emerald-500 text-white px-3 py-2 rounded-xl text-xs font-semibold shadow-sm transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-file-excel"></i>
+                    <span>Excel</span>
+                </button>
+
+                <button type="button" onclick="exportToPDF()" class="bg-red-600 hover:bg-red-500 text-white px-3 py-2 rounded-xl text-xs font-semibold shadow-sm transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-file-pdf"></i>
+                    <span>PDF</span>
+                </button>
+
+                <button type="button" id="btnManageUsers" onclick="openUsersModal()" class="admin-only hidden bg-slate-800 dark:bg-slate-700 hover:bg-slate-700 text-white px-3 py-2 rounded-xl text-xs font-semibold shadow-sm transition flex items-center space-x-1.5">
+                    <i class="fa-solid fa-users-gear"></i>
+                    <span id="txtUsers">Kasutajad</span>
+                </button>
+            </div>
+        </div>
+
+        <!-- ALPHABET FILTER BAR -->
+        <div id="alphabetBar" class="bg-white dark:bg-slate-900 px-4 py-2 rounded-xl border border-slate-200/80 dark:border-slate-800 mb-4 flex flex-wrap gap-1 items-center justify-center text-xs">
+            <button onclick="filterByLetter('')" id="btnAllLetters" class="px-2.5 py-1 font-bold rounded-lg bg-indigo-600 text-white shadow-sm transition">Kõik</button>
+        </div>
+
+        <!-- TABLE CONTAINER WITH STICKY HEADER & STICKY FIRST COLUMN -->
+        <div class="bg-white dark:bg-slate-900 rounded-2xl border border-slate-200/80 dark:border-slate-800 shadow-sm overflow-hidden flex-1 flex flex-col">
+            <div class="overflow-auto max-h-[60vh] w-full relative">
+                <table class="w-full text-left border-collapse whitespace-nowrap">
+                    <thead class="sticky top-0 z-20">
+                        <tr class="bg-slate-100 dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 text-[11px] uppercase tracking-wider text-slate-500 dark:text-slate-400 font-bold shadow-sm">
+                            <th class="py-3 px-3 w-12 bg-slate-100 dark:bg-slate-800 sticky-col-header cursor-pointer" onclick="sortBy('id')">Nr <span id="sort-id"></span></th>
+                            <th class="py-3 px-3 bg-slate-100 dark:bg-slate-800 cursor-pointer" onclick="sortBy('name')" id="thName">Nimi (ФИО) <span id="sort-name"></span></th>
+                            <th class="py-3 px-3 bg-slate-100 dark:bg-slate-800 cursor-pointer" onclick="sortBy('role')" id="thRole">Amet (Должность) <span id="sort-role"></span></th>
+                            <th class="py-3 px-3 bg-slate-100 dark:bg-slate-800 cursor-pointer" onclick="sortBy('short')" id="thShort">Lühinr <span id="sort-short"></span></th>
+                            <th class="py-3 px-3 bg-slate-100 dark:bg-slate-800 cursor-pointer" onclick="sortBy('phone')" id="thPhone">Linn / Телефон <span id="sort-phone"></span></th>
+                            <th class="py-3 px-3 bg-slate-100 dark:bg-slate-800 cursor-pointer" onclick="sortBy('cabinet')" id="thCabinet">Kabinet <span id="sort-cabinet"></span></th>
+                            <th class="py-3 px-3 bg-slate-100 dark:bg-slate-800 cursor-pointer" onclick="sortBy('department')" id="thDept">Osakond <span id="sort-department"></span></th>
+                            <th class="py-3 px-3 text-center write-allowed hidden bg-slate-100 dark:bg-slate-800" id="thActions">Tegevused</th>
+                        </tr>
+                    </thead>
+                    <tbody id="contactsTableBody" class="divide-y divide-slate-100 dark:divide-slate-800/60 text-xs"></tbody>
+                </table>
+            </div>
+            <div id="emptyState" class="hidden text-center py-16 text-slate-400">
+                <i class="fa-solid fa-folder-open text-4xl mb-3"></i>
+                <p id="txtNoData">Kontakte ei leitud.</p>
+            </div>
+        </div>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-white dark:bg-slate-900 border-t border-slate-200/80 dark:border-slate-800 py-3 text-center text-xs text-slate-400 font-medium">
+        <span id="footerText">SA Narva Haigla • Sisevõrgu telefoniteatmik</span>
+    </footer>
+
+    <!-- EXCEL IMPORT PREVIEW MODAL -->
+    <div id="importPreviewModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-4xl w-full p-6 max-h-[90vh] flex flex-col border border-slate-200 dark:border-slate-800">
+            <div class="flex justify-between items-center mb-4">
+                <div>
+                    <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100" id="previewTitle">Exceli impordi eelvaade / Предпросмотр импорта</h3>
+                    <p class="text-xs text-slate-400" id="previewSubtitle">Kontrollige andmeid enne salvestamist (näidatakse esimesi ridu)</p>
+                </div>
+                <button type="button" onclick="closeImportPreviewModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="flex-1 overflow-auto max-h-[50vh] border rounded-xl mb-4 bg-slate-50 dark:bg-slate-800/50">
+                <table class="w-full text-left text-xs border-collapse">
+                    <thead>
+                        <tr class="bg-slate-100 dark:bg-slate-800 border-b text-[10px] uppercase text-slate-400 sticky top-0">
+                            <th class="py-2.5 px-3">Nr</th>
+                            <th class="py-2.5 px-3">Nimi (ФИО)</th>
+                            <th class="py-2.5 px-3">Amet</th>
+                            <th class="py-2.5 px-3">Lühinr</th>
+                            <th class="py-2.5 px-3">Telefon</th>
+                            <th class="py-2.5 px-3">Kabinet</th>
+                            <th class="py-2.5 px-3">Osakond</th>
+                        </tr>
+                    </thead>
+                    <tbody id="importPreviewTableBody" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+                </table>
+            </div>
+            <div class="flex justify-end space-x-3 pt-2 border-t border-slate-100 dark:border-slate-800">
+                <button type="button" onclick="closeImportPreviewModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold rounded-xl text-xs" id="btnCancelPreview">Tühista</button>
+                <button type="button" onclick="confirmImportExcel()" class="px-5 py-2 bg-amber-600 hover:bg-amber-500 text-white font-semibold rounded-xl shadow text-xs" id="btnConfirmPreview">Kinnita ja impordi</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- HISTORY MODAL -->
+    <div id="historyModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-2xl w-full p-6 max-h-[90vh] flex flex-col border border-slate-200 dark:border-slate-800">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100" id="historyModalTitle">Muudatuste ajalugu / История изменений</h3>
+                <button type="button" onclick="closeHistoryModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            <div class="flex-1 overflow-y-auto space-y-2 pr-1" id="historyListContainer"></div>
+        </div>
+    </div>
+
+    <!-- LOGIN MODAL -->
+    <div id="loginModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-md w-full p-6 relative border border-slate-200 dark:border-slate-800">
+            <button type="button" onclick="closeLoginModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            <div class="text-center mb-6">
+                <div class="bg-indigo-600 text-white w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-3 shadow-md">
+                    <i class="fa-solid fa-lock text-xl"></i>
+                </div>
+                <h2 class="text-xl font-bold text-slate-800 dark:text-slate-100" id="modalLoginTitle">Sisselogimine / Вход</h2>
+            </div>
+            
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 mb-1" id="lblUser">Kasutajanimi / Логин</label>
+                    <input type="text" id="loginUser" autocomplete="off" class="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </div>
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 mb-1" id="lblPass">Parool / Пароль</label>
+                    <input type="password" id="loginPass" autocomplete="off" class="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                </div>
+                <div id="loginError" class="text-rose-500 text-xs text-center hidden font-semibold">Vale kasutajanimi või parool!</div>
+                <button type="button" onclick="performLogin()" class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-xl shadow transition text-xs" id="btnLoginAction">
+                    Logi sisse / Войти
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- DELETE ALL CONFIRMATION MODAL -->
+    <div id="deleteAllModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-md w-full p-6 border-2 border-rose-500">
+            <div class="text-center mb-4">
+                <div class="bg-rose-100 text-rose-600 w-14 h-14 rounded-2xl flex items-center justify-center mx-auto mb-3">
+                    <i class="fa-solid fa-triangle-exclamation text-xl"></i>
+                </div>
+                <h3 class="text-lg font-bold text-rose-600" id="delAllTitle">Kõigi andmete kustutamine!</h3>
+                <p class="text-xs text-slate-400 mt-1" id="delAllDesc">See tegevus on pöördumatu. Kõik kontaktid kustutatakse jäädavalt baasist.</p>
+            </div>
+            <div class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold text-slate-500 mb-1" id="delAllLabel">Kinnitamiseks sisesta oma admini parool:</label>
+                    <input type="password" id="confirmAdminPass" placeholder="Admin parool" class="w-full px-3.5 py-2.5 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl text-sm focus:ring-2 focus:ring-rose-500 focus:outline-none">
+                </div>
+                <div id="deleteAllError" class="text-rose-500 text-xs text-center hidden font-semibold">Vale parool!</div>
+                <div class="flex justify-end space-x-2 pt-2 border-t border-slate-100 dark:border-slate-800">
+                    <button type="button" onclick="closeDeleteAllModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-xs font-semibold rounded-xl text-slate-600 dark:text-slate-300" id="btnCancelDel">Tühista</button>
+                    <button type="button" onclick="confirmDeleteAllContacts()" class="px-4 py-2 bg-rose-600 text-white text-xs font-semibold rounded-xl shadow" id="btnConfirmDel">Kustuta kõik</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- CONTACT MODAL -->
+    <div id="contactModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-lg w-full p-6 border border-slate-200 dark:border-slate-800">
+            <h3 id="modalTitle" class="text-lg font-bold text-slate-800 dark:text-slate-100 mb-4">Lisa uus kontakt</h3>
+            <div class="space-y-3 text-xs">
+                <input type="hidden" id="contactId">
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-500 mb-1" id="lblContactName">Nimi / ФИО</label>
+                        <input type="text" id="cName" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-500 mb-1" id="lblContactRole">Amet / Должность</label>
+                        <input type="text" id="cRole" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-500 mb-1" id="lblContactShort">Lühinumber (Внутр.)</label>
+                        <input type="text" id="cShort" placeholder="102" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-500 mb-1" id="lblContactPhone">Telefon (Linn / Городской)</label>
+                        <input type="text" id="cPhone" placeholder="35 71 802" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-3">
+                    <div>
+                        <label class="block font-semibold text-slate-500 mb-1" id="lblContactCab">Kabinet (Кабинет)</label>
+                        <input type="text" id="cCab" placeholder="kab. 11" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    </div>
+                    <div>
+                        <label class="block font-semibold text-slate-500 mb-1" id="lblContactDept">Osakond (Отдел)</label>
+                        <input type="text" id="cDept" placeholder="Administratsioon Haigla 7" class="w-full px-3 py-2 bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:outline-none">
+                    </div>
+                </div>
+                <div class="flex justify-end space-x-2 pt-3 border-t border-slate-100 dark:border-slate-800">
+                    <button type="button" onclick="closeContactModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 font-semibold rounded-xl" id="btnCancelContact">Tühista</button>
+                    <button type="button" onclick="saveContact()" class="px-4 py-2 bg-indigo-600 text-white font-semibold rounded-xl shadow" id="btnSaveContact">Salvesta</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- USERS MANAGEMENT MODAL -->
+    <div id="usersModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl shadow-2xl max-w-2xl w-full p-6 max-h-[90vh] flex flex-col border border-slate-200 dark:border-slate-800">
+            <div class="flex justify-between items-center mb-4">
+                <h3 class="text-lg font-bold text-slate-800 dark:text-slate-100" id="usersModalTitle">Kasutajate haldus / Управление пользователями</h3>
+                <button type="button" onclick="closeUsersModal()" class="text-slate-400 hover:text-slate-600"><i class="fa-solid fa-xmark text-lg"></i></button>
+            </div>
+            
+            <div class="mb-5 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                <h4 class="text-xs font-semibold text-slate-600 dark:text-slate-300 mb-3" id="lblNewUserTitle">Lisa uus kasutaja</h4>
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-2.5">
+                    <input type="text" id="newUsername" placeholder="Kasutajanimi" class="px-3 py-2 bg-white dark:bg-slate-800 border rounded-xl text-xs">
+                    <input type="password" id="newPassword" placeholder="Parool" class="px-3 py-2 bg-white dark:bg-slate-800 border rounded-xl text-xs">
+                    <select id="newRole" class="px-3 py-2 bg-white dark:bg-slate-800 border rounded-xl text-xs">
+                        <option value="viewer" id="roleViewer">Vaatleja</option>
+                        <option value="editor" id="roleEditor">Redaktor</option>
+                        <option value="admin" id="roleAdmin">Administraator</option>
+                    </select>
+                    <button type="button" onclick="createNewUser()" class="sm:col-span-3 bg-slate-800 hover:bg-slate-700 text-white py-2 rounded-xl text-xs font-semibold transition" id="btnAddUserAction">Lisa kasutaja</button>
+                </div>
+            </div>
+
+            <div class="flex-1 overflow-y-auto">
+                <table class="w-full text-left border-collapse text-xs">
+                    <thead>
+                        <tr class="bg-slate-100 dark:bg-slate-800 border-b text-[10px] uppercase text-slate-400">
+                            <th class="py-2 px-3" id="thUserCol">Kasutaja</th>
+                            <th class="py-2 px-3" id="thRoleCol">Roll</th>
+                            <th class="py-2 px-3 text-center" id="thActionsCol">Tegevused</th>
+                        </tr>
+                    </thead>
+                    <tbody id="usersTableBody" class="divide-y divide-slate-100 dark:divide-slate-800"></tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- JAVASCRIPT LOGIC -->
+    <script>
+        let serverData = { users: [], contacts: [], history: [] };
+        let currentUser = JSON.parse(sessionStorage.getItem('phonebook_current_user')) || null;
+        let currentLang = 'et';
+        let currentSortField = 'id';
+        let sortAscending = true;
+        let selectedLetter = '';
+        let pendingImportContacts = [];
+
+        const translations = {
+            et: {
+                title: "SA Narva Haigla Telefonikataloog",
+                subtitle: "Нарвская больница - Телефонный справочник",
+                thName: "Nimi (ФИО)",
+                thRole: "Amet (Должность)",
+                thShort: "Lühinr",
+                thPhone: "Linn / Telefon",
+                thCabinet: "Kabinet",
+                thDept: "Osakond",
+                thActions: "Tegevused",
+                noData: "Kontakte ei leitud.",
+                addContact: "Lisa kontakt",
+                importExcel: "Impordi Excel",
+                history: "Ajalugu",
+                deleteAll: "Kustuta kõik",
+                users: "Kasutajad",
+                login: "Logi sisse",
+                logout: "Välju",
+                allDepts: "Kõik osakonnad",
+                allLetters: "Kõik",
+                searchPlaceholder: "Otsi nime, ametit, numbrit...",
+                footer: "SA Narva Haigla • Sisevõrgu telefoniteatmik",
+                previewTitle: "Exceli impordi eelvaade",
+                previewSubtitle: "Kontrollige andmeid enne salvestamist",
+                confirmPreview: "Kinnita ja impordi"
+            },
+            ru: {
+                title: "Нарвская больница",
+                subtitle: "Внутренний телефонный справочник",
+                thName: "Сотрудник (ФИО)",
+                thRole: "Должность",
+                thShort: "Внутр. №",
+                thPhone: "Городской / Тел.",
+                thCabinet: "Кабинет",
+                thDept: "Отделение",
+                thActions: "Действия",
+                noData: "Контактов не найдено.",
+                addContact: "Добавить контакт",
+                importExcel: "Импорт Excel",
+                history: "История",
+                deleteAll: "Удалить все",
+                users: "Пользователи",
+                login: "Войти",
+                logout: "Выйти",
+                allDepts: "Все отделения",
+                allLetters: "Все",
+                searchPlaceholder: "Поиск по имени, должности, номеру...",
+                footer: "Нарвская больница • Внутренний телефонный справочник",
+                previewTitle: "Предпросмотр импорта Excel",
+                previewSubtitle: "Проверьте данные перед сохранением",
+                confirmPreview: "Подтвердить и импортировать"
+            },
+            en: {
+                title: "Narva Hospital",
+                subtitle: "Phone Directory",
+                thName: "Name (Full Name)",
+                thRole: "Role / Position",
+                thShort: "Ext.",
+                thPhone: "Phone",
+                thCabinet: "Room",
+                thDept: "Department",
+                thActions: "Actions",
+                noData: "No contacts found.",
+                addContact: "Add contact",
+                importExcel: "Import Excel",
+                history: "History",
+                deleteAll: "Delete all",
+                users: "Users",
+                login: "Log in",
+                logout: "Log out",
+                allDepts: "All departments",
+                allLetters: "All",
+                searchPlaceholder: "Search name, position, number...",
+                footer: "Narva Hospital • Internal Phone Directory",
+                previewTitle: "Excel Import Preview",
+                previewSubtitle: "Check data before saving",
+                confirmPreview: "Confirm & Import"
+            }
+        };
+
+        if (localStorage.getItem('theme') === 'dark' || (!localStorage.getItem('theme') && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            document.getElementById('themeBtn').innerText = '☀️';
+        }
+
+        function toggleTheme() {
+            const html = document.documentElement;
+            if (html.classList.contains('dark')) {
+                html.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+                document.getElementById('themeBtn').innerText = '🌙';
+            } else {
+                html.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+                document.getElementById('themeBtn').innerText = '☀️';
+            }
+        }
+
+        function setLang(lang) {
+            currentLang = lang;
+            ['et', 'ru', 'en'].forEach(l => {
+                const btn = document.getElementById('lang-' + l);
+                btn.className = l === lang ? "px-2.5 py-1 font-semibold rounded-lg transition bg-white text-indigo-700 shadow-sm" : "px-2.5 py-1 font-semibold rounded-lg transition text-white/70 hover:text-white";
+            });
+            const t = translations[currentLang];
+            document.getElementById('headerTitle').innerText = t.title;
+            document.getElementById('headerSubtitle').innerText = t.subtitle;
+            document.getElementById('thName').innerText = t.thName;
+            document.getElementById('thRole').innerText = t.thRole;
+            document.getElementById('thShort').innerText = t.thShort;
+            document.getElementById('thPhone').innerText = t.thPhone;
+            document.getElementById('thCabinet').innerText = t.thCabinet;
+            document.getElementById('thDept').innerText = t.thDept;
+            document.getElementById('thActions').innerText = t.thActions;
+            document.getElementById('txtNoData').innerText = t.noData;
+            document.getElementById('txtAddContact').innerText = t.addContact;
+            document.getElementById('txtImport').innerText = t.importExcel;
+            document.getElementById('txtHistory').innerText = t.history;
+            document.getElementById('txtDeleteAll').innerText = t.deleteAll;
+            document.getElementById('txtUsers').innerText = t.users;
+            document.getElementById('txtLogin').innerText = t.login;
+            document.getElementById('txtLogout').innerText = t.logout;
+            document.getElementById('optAllDepts').innerText = t.allDepts;
+            document.getElementById('btnAllLetters').innerText = t.allLetters;
+            document.getElementById('searchInput').placeholder = t.searchPlaceholder;
+            document.getElementById('footerText').innerText = t.footer;
+            document.getElementById('previewTitle').innerText = t.previewTitle;
+            document.getElementById('previewSubtitle').innerText = t.previewSubtitle;
+            document.getElementById('btnConfirmPreview').innerText = t.confirmPreview;
+            renderTable();
+        }
+
+        async function fetchServerData() {
+            try {
+                const res = await fetch('/api/data');
+                serverData = await res.json();
+                if (!serverData.history) serverData.history = [];
+                buildAlphabetBar();
+                populateDepartmentsDropdown();
+            } catch (err) {
+                console.error("Viga serveri andmete laadimisel:", err);
+            }
+        }
+
+        async function saveContactsToServer() {
+            await fetch('/api/contacts', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ contacts: serverData.contacts, history: serverData.history })
+            });
+            buildAlphabetBar();
+            populateDepartmentsDropdown();
+        }
+
+        async function saveUsersToServer() {
+            await fetch('/api/users', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(serverData.users)
+            });
+        }
+
+        function logAction(actionText) {
+            const user = currentUser ? currentUser.username : 'Külaline';
+            const time = new Date().toLocaleString('et-EE');
+            serverData.history.unshift({ user, action: actionText, time });
+            if (serverData.history.length > 50) serverData.history.pop();
+        }
+
+        function buildAlphabetBar() {
+            const bar = document.getElementById('alphabetBar');
+            const allBtnHTML = `<button onclick="filterByLetter('')" id="btnAllLetters" class="px-2.5 py-1 font-bold rounded-lg ${selectedLetter === '' ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-indigo-50'}">${translations[currentLang].allLetters}</button>`;
+            
+            const alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZŠŽÕÄÖÜ".split('');
+            let html = allBtnHTML;
+            alphabet.forEach(letter => {
+                const active = selectedLetter === letter;
+                html += `<button onclick="filterByLetter('${letter}')" class="px-2 py-1 font-semibold rounded-lg transition ${active ? 'bg-indigo-600 text-white shadow-sm' : 'bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-indigo-50 dark:hover:bg-slate-700'}">${letter}</button>`;
+            });
+            bar.innerHTML = html;
+        }
+
+        function filterByLetter(letter) {
+            selectedLetter = letter;
+            buildAlphabetBar();
+            renderTable();
+        }
+
+        window.onload = async function() {
+            await fetchServerData();
+            updateAuthUI();
+            renderTable();
+
+            document.getElementById('loginPass').addEventListener('keypress', function(e) { if (e.key === 'Enter') performLogin(); });
+            document.getElementById('loginUser').addEventListener('keypress', function(e) { if (e.key === 'Enter') performLogin(); });
+            document.getElementById('confirmAdminPass').addEventListener('keypress', function(e) { if (e.key === 'Enter') confirmDeleteAllContacts(); });
+        };
+
+        function populateDepartmentsDropdown() {
+            const select = document.getElementById('departmentFilter');
+            const currentVal = select.value;
+            const t = translations[currentLang];
+            select.innerHTML = `<option value="">${t.allDepts}</option>`;
+            
+            const depts = [...new Set(serverData.contacts.map(c => c.department).filter(Boolean))].sort();
+            depts.forEach(d => {
+                const opt = document.createElement('option');
+                opt.value = d;
+                opt.textContent = d;
+                select.appendChild(opt);
+            });
+            select.value = currentVal;
+        }
+
+        function updateAuthUI() {
+            const btnLogin = document.getElementById('btnLogin');
+            const btnLogout = document.getElementById('btnLogout');
+            const nameEl = document.getElementById('currentUserName');
+            const roleEl = document.getElementById('currentUserRole');
+
+            if (currentUser) {
+                btnLogin.classList.add('hidden');
+                btnLogout.classList.remove('hidden');
+                nameEl.innerText = currentUser.username;
+                roleEl.innerText = currentUser.role === 'admin' ? 'Admin' : (currentUser.role === 'editor' ? 'Redaktor' : 'Vaatleja');
+            } else {
+                btnLogin.classList.remove('hidden');
+                btnLogout.classList.add('hidden');
+                nameEl.innerText = "Külaline";
+                roleEl.innerText = "Vaatamine";
+            }
+
+            const canWrite = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
+            document.querySelectorAll('.write-allowed').forEach(el => canWrite ? el.classList.remove('hidden') : el.classList.add('hidden'));
+
+            const isAdmin = currentUser && currentUser.role === 'admin';
+            document.querySelectorAll('.admin-only').forEach(el => isAdmin ? el.classList.remove('hidden') : el.classList.add('hidden'));
+        }
+
+        function openLoginModal() { document.getElementById('loginModal').classList.remove('hidden'); }
+        function closeLoginModal() { document.getElementById('loginModal').classList.add('hidden'); }
+
+        function performLogin() {
+            const u = document.getElementById('loginUser').value.trim();
+            const p = document.getElementById('loginPass').value.trim();
+            const found = (serverData.users || []).find(item => item.username === u && item.pass === p);
+            if (found) {
+                currentUser = found;
+                sessionStorage.setItem('phonebook_current_user', JSON.stringify(currentUser));
+                closeLoginModal();
+                document.getElementById('loginError').classList.add('hidden');
+                updateAuthUI();
+                renderTable();
+            } else {
+                document.getElementById('loginError').classList.remove('hidden');
+            }
+        }
+
+        function logout() {
+            currentUser = null;
+            sessionStorage.removeItem('phonebook_current_user');
+            updateAuthUI();
+            renderTable();
+        }
+
+        function openDeleteAllModal() {
+            document.getElementById('confirmAdminPass').value = '';
+            document.getElementById('deleteAllError').classList.add('hidden');
+            document.getElementById('deleteAllModal').classList.remove('hidden');
+        }
+
+        function closeDeleteAllModal() { document.getElementById('deleteAllModal').classList.add('hidden'); }
+
+        async function confirmDeleteAllContacts() {
+            const passInput = document.getElementById('confirmAdminPass').value.trim();
+            const adminUser = serverData.users.find(u => u.username === currentUser.username && u.pass === passInput && u.role === 'admin');
+
+            if (!adminUser) {
+                document.getElementById('deleteAllError').classList.remove('hidden');
+                return;
+            }
+
+            logAction("Kustutas kõik kontaktid baasist / Удалил все контакты");
+            serverData.contacts = [];
+            await saveContactsToServer();
+            closeDeleteAllModal();
+            renderTable();
+        }
+
+        function openHistoryModal() {
+            const container = document.getElementById('historyListContainer');
+            container.innerHTML = '';
+            if (!serverData.history || serverData.history.length === 0) {
+                container.innerHTML = '<p class="text-center text-slate-400 py-8">Ajalugu on tühi.</p>';
+            } else {
+                serverData.history.forEach(h => {
+                    const div = document.createElement('div');
+                    div.className = "p-3 bg-slate-50 dark:bg-slate-800 rounded-xl border border-slate-200 dark:border-slate-700 text-xs flex justify-between items-center";
+                    div.innerHTML = `<div><strong class="text-indigo-600 dark:text-indigo-400">${h.user}:</strong> ${h.action}</div><span class="text-[10px] text-slate-400">${h.time}</span>`;
+                    container.appendChild(div);
+                });
+            }
+            document.getElementById('historyModal').classList.remove('hidden');
+        }
+
+        function closeHistoryModal() { document.getElementById('historyModal').classList.add('hidden'); }
+
+        function sortBy(field) {
+            if (currentSortField === field) {
+                sortAscending = !sortAscending;
+            } else {
+                currentSortField = field;
+                sortAscending = true;
+            }
+            ['id', 'name', 'role', 'short', 'phone', 'cabinet', 'department'].forEach(f => {
+                const el = document.getElementById('sort-' + f);
+                if (el) el.innerHTML = '';
+            });
+            const indicator = document.getElementById('sort-' + field);
+            if (indicator) indicator.innerHTML = sortAscending ? '▲' : '▼';
+            renderTable();
+        }
+
+        function highlightText(text, query) {
+            if (!query || !text) return text || '-';
+            const regex = new RegExp(`(${query.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&')})`, 'gi');
+            return String(text).replace(regex, '<mark>$1</mark>');
+        }
+
+        function getFilteredContacts() {
+            const query = document.getElementById('searchInput').value.toLowerCase().trim();
+            const selectedDept = document.getElementById('departmentFilter').value;
+
+            let list = [...serverData.contacts];
+
+            list = list.filter(c => {
+                const matchesQuery = !query || 
+                                     (c.name && c.name.toLowerCase().includes(query)) ||
+                                     (c.role && c.role.toLowerCase().includes(query)) ||
+                                     (c.short && c.short.toLowerCase().includes(query)) ||
+                                     (c.phone && c.phone.toLowerCase().includes(query)) ||
+                                     (c.cabinet && c.cabinet.toLowerCase().includes(query)) ||
+                                     (c.department && c.department.toLowerCase().includes(query));
+                
+                const matchesDept = !selectedDept || c.department === selectedDept;
+                const matchesLetter = !selectedLetter || (c.name && c.name.toUpperCase().startsWith(selectedLetter));
+
+                return matchesQuery && matchesDept && matchesLetter;
+            });
+
+            // Sorting
+            list.sort((a, b) => {
+                let valA = a[currentSortField];
+                let valB = b[currentSortField];
+
+                if (currentSortField === 'id') {
+                    valA = Number(valA) || 0;
+                    valB = Number(valB) || 0;
+                } else {
+                    valA = String(valA || '').toLowerCase();
+                    valB = String(valB || '').toLowerCase();
+                }
+
+                if (valA < valB) return sortAscending ? -1 : 1;
+                if (valA > valB) return sortAscending ? 1 : -1;
+                return 0;
+            });
+
+            return list;
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('contactsTableBody');
+            const emptyState = document.getElementById('emptyState');
+            tbody.innerHTML = '';
+
+            const filtered = getFilteredContacts();
+            const query = document.getElementById('searchInput').value.trim();
+
+            if (filtered.length === 0) {
+                emptyState.classList.remove('hidden');
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+            }
+
+            const canWrite = currentUser && (currentUser.role === 'admin' || currentUser.role === 'editor');
+
+            filtered.forEach(c => {
+                const tr = document.createElement('tr');
+                tr.className = "hover:bg-indigo-50/40 dark:hover:bg-slate-800/40 transition border-b border-slate-100 dark:border-slate-800/60";
+                
+                let actionsHTML = '';
+                if (canWrite) {
+                    actionsHTML = `
+                        <td class="py-2.5 px-3 text-center space-x-2 write-allowed whitespace-nowrap">
+                            <button type="button" onclick="editContact(${c.id})" class="text-indigo-600 hover:text-indigo-900 dark:text-indigo-400 transition" title="Muuda"><i class="fa-solid fa-pen-to-square"></i></button>
+                            <button type="button" onclick="deleteContact(${c.id})" class="text-rose-600 hover:text-rose-900 dark:text-rose-400 transition" title="Kustuta"><i class="fa-solid fa-trash"></i></button>
+                        </td>
+                    `;
+                }
+
+                const initial = c.name ? c.name.charAt(0).toUpperCase() : '?';
+
+                tr.innerHTML = `
+                    <td class="py-2.5 px-3 text-slate-400 whitespace-nowrap sticky-col-cell bg-slate-50 dark:bg-slate-900 font-bold">${c.id}</td>
+                    <td class="py-2.5 px-3 font-bold text-slate-800 dark:text-slate-100 whitespace-nowrap">
+                        <div class="flex items-center gap-2">
+                            <div class="w-7 h-7 rounded-lg bg-indigo-50 dark:bg-indigo-950/60 text-indigo-600 dark:text-indigo-400 font-bold flex items-center justify-center text-xs flex-shrink-0">
+                                ${initial}
+                            </div>
+                            <span>${highlightText(c.name || '-', query)}</span>
+                        </div>
+                    </td>
+                    <td class="py-2.5 px-3 font-medium text-slate-600 dark:text-slate-300 whitespace-nowrap">${highlightText(c.role || '—', query)}</td>
+                    <td class="py-2.5 px-3 font-mono font-bold text-emerald-600 dark:text-emerald-400 whitespace-nowrap">
+                        ${c.short ? '<a href="tel:' + c.short + '" class="bg-emerald-50 dark:bg-emerald-950/40 px-2 py-0.5 rounded border border-emerald-200/60 dark:border-emerald-800/50 hover:bg-emerald-100 inline-block">📞 ' + highlightText(c.short, query) + '</a>' : '-'}
+                    </td>
+                    <td class="py-2.5 px-3 font-mono text-indigo-600 dark:text-indigo-400 whitespace-nowrap">${highlightText(c.phone || '-', query)}</td>
+                    <td class="py-2.5 px-3 font-semibold text-blue-600 dark:text-blue-400 whitespace-nowrap">${c.cabinet ? '<span class="bg-blue-50 dark:bg-blue-950/40 px-2 py-0.5 rounded border border-blue-200/60 dark:border-blue-800/50 inline-block">' + highlightText(c.cabinet, query) + '</span>' : '-'}</td>
+                    <td class="py-2.5 px-3 whitespace-nowrap"><span class="bg-indigo-50 dark:bg-indigo-950/50 text-indigo-700 dark:text-indigo-300 px-2.5 py-1 rounded-md font-medium text-[11px]">${highlightText(c.department || '-', query)}</span></td>
+                    ${canWrite ? actionsHTML : ''}
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function openContactModal(id = null) {
+            document.getElementById('contactModal').classList.remove('hidden');
+            if (id) {
+                document.getElementById('modalTitle').innerText = "Muuda kontakti";
+                const c = serverData.contacts.find(item => Number(item.id) === Number(id));
+                document.getElementById('contactId').value = c.id;
+                document.getElementById('cName').value = c.name || '';
+                document.getElementById('cRole').value = c.role || '';
+                document.getElementById('cShort').value = c.short || '';
+                document.getElementById('cPhone').value = c.phone || '';
+                document.getElementById('cCab').value = c.cabinet || '';
+                document.getElementById('cDept').value = c.department || '';
+            } else {
+                document.getElementById('modalTitle').innerText = "Lisa uus kontakt";
+                document.getElementById('contactId').value = '';
+                document.getElementById('cName').value = '';
+                document.getElementById('cRole').value = '';
+                document.getElementById('cShort').value = '';
+                document.getElementById('cPhone').value = '';
+                document.getElementById('cCab').value = '';
+                document.getElementById('cDept').value = 'Administratsioon Haigla 7';
+            }
+        }
+
+        function closeContactModal() { document.getElementById('contactModal').classList.add('hidden'); }
+
+        async function saveContact() {
+            const id = document.getElementById('contactId').value;
+            const name = document.getElementById('cName').value.trim();
+            const role = document.getElementById('cRole').value.trim();
+            const short = document.getElementById('cShort').value.trim();
+            const phone = document.getElementById('cPhone').value.trim();
+            const cabinet = document.getElementById('cCab').value.trim();
+            const department = document.getElementById('cDept').value.trim();
+
+            if (!name && !phone && !short) {
+                alert("Palun täitke vähemalt nimi, lühinumber või telefon!");
+                return;
+            }
+
+            if (id) {
+                serverData.contacts = serverData.contacts.map(c => Number(c.id) === Number(id) ? { id: Number(id), name, role, short, phone, cabinet, department } : c);
+                logAction(`Muutis töötaja ID №${id} ("${name}") / Изменил сотрудника ID №${id} ("${name}")`);
+            } else {
+                const maxId = serverData.contacts.reduce((max, c) => (Number(c.id) > max ? Number(c.id) : max), 0);
+                const newId = maxId + 1;
+                serverData.contacts.push({ id: newId, name, role, short, phone, cabinet, department });
+                logAction(`Lisas uue töötaja ID №${newId} ("${name}") / Добавил сотрудника ID №${newId} ("${name}")`);
+            }
+
+            await saveContactsToServer();
+            closeContactModal();
+            renderTable();
+        }
+
+        function editContact(id) { openContactModal(id); }
+
+        async function deleteContact(id) {
+            const target = serverData.contacts.find(c => Number(c.id) === Number(id));
+            if (confirm(`Kas olete kindel, et soovite kustutada töötaja ID №${id} (${target ? target.name : ''})?`)) {
+                logAction(`Kustutas töötaja ID №${id} ("${target ? target.name : id}") / Удалил сотрудника ID №${id} ("${target ? target.name : id}")`);
+                serverData.contacts = serverData.contacts.filter(c => Number(c.id) !== Number(id));
+                await saveContactsToServer();
+                renderTable();
+            }
+        }
+
+        function extractCabinetAndRole(text) {
+            if (!text) return { name: "", role: "", cabinet: "" };
+            
+            let cleanText = text.trim();
+            let cabinetParts = [];
+
+            const kabMatch = cleanText.match(/(kab\.?\s*\d+[a-zA-Z]*|kabinet\.?\s*\d+[a-zA-Z]*|nr\.?\s*\d+[a-zA-Z]*)/i);
+            if (kabMatch) {
+                cabinetParts.push(kabMatch[1].trim());
+                cleanText = cleanText.replace(kabMatch[0], "").trim();
+            }
+
+            const locMatch = cleanText.match(/(Vestervalli\s*\d+|Haigla\s*\d+|1\s*korrus)/i);
+            if (locMatch) {
+                cabinetParts.push(locMatch[1].trim());
+                cleanText = cleanText.replace(locMatch[0], "").trim();
+            }
+
+            cleanText = cleanText.replace(/^[,\s\-\–]+|[,\s\-\–]+$/g, "").trim();
+
+            let hasDr = false;
+            if (/\bdr\.?\s*/i.test(cleanText)) {
+                hasDr = true;
+                cleanText = cleanText.replace(/\bdr\.?\s*/gi, "").trim();
+            }
+
+            const knownRoles = [
+                "Juhatuse liige", "Ülemarst", "Ülemõde", "Õenduskvaliteedi juht", 
+                "Patsiendikogemuse juht", "Jurist", "IT insener", "IT-spetsialistid", "IT spetsialistid", "IT spetsialist",
+                "Isikukaitse andmete spetsialist", "Ehituse spetsialist", "Kantselei sekretär",
+                "Naistekliiniku juhataja", "Ämmaemandusjuhi k.t.", "Sekretär", "ämmaemand", "Gynekoloog", "Günekoloog",
+                "Kommunikatsiooni- ja turundusspetsialist", "Kantselei juhataja", "Kvaliteedispetsialist",
+                "Personaliteenistuse juhataja", "Personalispetsialist", "Majandusteenistuse peaspetsialist",
+                "Puhastusteenistuse juht", "Infektsioonikontrolli arst", "Vastutav õde", "Juhataja",
+                "Laboriosakonna juhataja", "Arst-konsultant", "Arst", "Vanem med.laborant", "vanemfüsioterapeut",
+                "füsioterapeut", "Kiirabiosakonna", "Õmbleja", "Juuksur", "Köögiplooki juhataja", "Diieti -ja toitumise spetsialist",
+                "Meister", "Dispetšer", "Valvemehaanik", "Autojuhid", "Vanemõde"
+            ];
+
+            let role = "";
+            let name = cleanText;
+
+            for (let r of knownRoles.sort((a, b) => b.length - a.length)) {
+                if (cleanText.toLowerCase().startsWith(r.toLowerCase())) {
+                    role = r;
+                    name = cleanText.substring(r.length).trim();
+                    break;
+                }
+            }
+
+            if (!role && hasDr) {
+                role = "Arst";
+            }
+
+            name = name.replace(/^[,\s\-\–]+|[,\s\-\–]+$/g, "").trim();
+            const cabinet = cabinetParts.join(", ");
+
+            return { name: name || cleanText, role: role, cabinet: cabinet };
+        }
+
+        function handleFileSelect(event) {
+            const file = event.target.files[0];
+            if (!file) return;
+
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                try {
+                    const data = new Uint8Array(e.target.result);
+                    const workbook = XLSX.read(data, { type: 'array' });
+                    const firstSheetName = workbook.SheetNames[0];
+                    const worksheet = workbook.Sheets[firstSheetName];
+                    const rows = XLSX.utils.sheet_to_json(worksheet, { header: 1 });
+
+                    if (!rows || rows.length === 0) {
+                        alert("Fail on tühi!");
+                        return;
+                    }
+
+                    let newContacts = [];
+                    let maxId = 0;
+                    let currentDeptLeft = "Üldine";
+                    let currentDeptRight = "Üldine";
+
+                    rows.forEach(row => {
+                        const c0 = row[0] ? String(row[0]).trim() : "";
+                        const c1 = row[1] ? String(row[1]).trim() : "";
+                        const c2 = row[2] ? String(row[2]).trim() : "";
+
+                        if (c0 === "2024" || c0.includes("seisuga")) return;
+
+                        if (c0 && !c1 && !c2) {
+                            currentDeptLeft = c0;
+                        } else if (c0 || c1 || c2) {
+                            maxId++;
+                            const parsed = extractCabinetAndRole(c0 || "Kontakt");
+                            newContacts.push({
+                                id: maxId,
+                                name: parsed.name,
+                                role: parsed.role,
+                                short: c1,
+                                phone: c2 || "-",
+                                cabinet: parsed.cabinet,
+                                department: currentDeptLeft
+                            });
+                        }
+
+                        const c4 = row[4] ? String(row[4]).trim() : "";
+                        const c5 = row[5] ? String(row[5]).trim() : "";
+                        const c6 = row[6] ? String(row[6]).trim() : "";
+
+                        if (c4 && !c5 && !c6) {
+                            currentDeptRight = c4;
+                        } else if (c4 || c5 || c6) {
+                            maxId++;
+                            const parsed = extractCabinetAndRole(c4 || "Kontakt");
+                            newContacts.push({
+                                id: maxId,
+                                name: parsed.name,
+                                role: parsed.role,
+                                short: c5,
+                                phone: c6 || "-",
+                                cabinet: parsed.cabinet,
+                                department: currentDeptRight
+                            });
+                        }
+                    });
+
+                    pendingImportContacts = newContacts;
+                    showImportPreviewModal(newContacts);
+                } catch (err) {
+                    console.error("Viga lugemisel:", err);
+                    alert("Viga Exceli faili töötlemisel!");
+                } finally {
+                    event.target.value = '';
+                }
+            };
+            reader.readAsArrayBuffer(file);
+        }
+
+        function showImportPreviewModal(contacts) {
+            const tbody = document.getElementById('importPreviewTableBody');
+            tbody.innerHTML = '';
+            contacts.slice(0, 25).forEach(c => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-100 dark:border-slate-800";
+                tr.innerHTML = `
+                    <td class="py-2 px-3 font-bold text-slate-400">${c.id}</td>
+                    <td class="py-2 px-3 font-bold">${c.name || '-'}</td>
+                    <td class="py-2 px-3 text-slate-600 dark:text-slate-300">${c.role || '-'}</td>
+                    <td class="py-2 px-3 font-mono text-emerald-600">${c.short || '-'}</td>
+                    <td class="py-2 px-3 font-mono text-indigo-600">${c.phone || '-'}</td>
+                    <td class="py-2 px-3 text-blue-600">${c.cabinet || '-'}</td>
+                    <td class="py-2 px-3"><span class="bg-indigo-50 dark:bg-indigo-950 text-indigo-700 dark:text-indigo-300 px-2 py-0.5 rounded">${c.department || '-'}</span></td>
+                `;
+                tbody.appendChild(tr);
+            });
+            document.getElementById('importPreviewModal').classList.remove('hidden');
+        }
+
+        function closeImportPreviewModal() {
+            document.getElementById('importPreviewModal').classList.add('hidden');
+            pendingImportContacts = [];
+        }
+
+        async function confirmImportExcel() {
+            if (pendingImportContacts.length > 0) {
+                serverData.contacts = pendingImportContacts;
+                logAction(`Impordis uue Exceli faili (${pendingImportContacts.length} kontakti) / Импортировал Excel (${pendingImportContacts.length} конт.)`);
+                await saveContactsToServer();
+                renderTable();
+                closeImportPreviewModal();
+                alert(`Edukalt imporditud ${serverData.contacts.length} kontakt(i)!`);
+            }
+        }
+
+        function exportToExcel() {
+            const filteredContacts = getFilteredContacts();
+            if (filteredContacts.length === 0) return;
+
+            const dataToExport = filteredContacts.map(c => ({
+                "Nr": c.id,
+                "Nimi": c.name,
+                "Amet": c.role || "",
+                "Lühinumber": c.short || "",
+                "Telefon": c.phone,
+                "Kabinet": c.cabinet || "",
+                "Osakond": c.department
+            }));
+
+            const worksheet = XLSX.utils.json_to_sheet(dataToExport);
+            const workbook = XLSX.utils.book_new();
+            XLSX.utils.book_append_sheet(workbook, worksheet, "Narva_Haigla_Telefonid");
+            XLSX.writeFile(workbook, "SA_Narva_Haigla_Telefonid.xlsx");
+        }
+
+        function exportToPDF() {
+            const filteredContacts = getFilteredContacts();
+            if (filteredContacts.length === 0) return;
+
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF({ orientation: 'landscape', unit: 'mm', format: 'a4' });
+
+            doc.setFontSize(16);
+            doc.text("SA Narva Haigla Telefonikataloog", 14, 18);
+
+            const tableData = filteredContacts.map(c => [
+                c.id,
+                c.name,
+                c.role || '-',
+                c.short || '-',
+                c.phone,
+                c.cabinet || '-',
+                c.department
+            ]);
+
+            doc.autoTable({
+                startY: 25,
+                head: [['Nr', 'Nimi', 'Amet', 'Lühinr', 'Telefon', 'Kabinet', 'Osakond']],
+                body: tableData,
+                theme: 'striped',
+                headStyles: { fillColor: [67, 56, 202] },
+                styles: { fontSize: 8 }
+            });
+
+            doc.save("SA_Narva_Haigla_Telefonid.pdf");
+        }
+
+        function openUsersModal() {
+            document.getElementById('usersModal').classList.remove('hidden');
+            renderUsersTable();
+        }
+
+        function closeUsersModal() { document.getElementById('usersModal').classList.add('hidden'); }
+
+        function renderUsersTable() {
+            const tbody = document.getElementById('usersTableBody');
+            tbody.innerHTML = '';
+
+            serverData.users.forEach(u => {
+                const tr = document.createElement('tr');
+                tr.className = "border-b border-slate-100 dark:border-slate-800";
+                let roleLabel = u.role === 'admin' ? 'Administraator' : (u.role === 'editor' ? 'Redaktor' : 'Vaatleja');
+                tr.innerHTML = `
+                    <td class="py-2 px-3 font-medium">${u.username}</td>
+                    <td class="py-2 px-3"><span class="bg-slate-100 dark:bg-slate-800 px-2 py-0.5 rounded text-xs font-semibold">${roleLabel}</span></td>
+                    <td class="py-2 px-3 text-center">
+                        ${u.username !== 'admin' ? `<button type="button" onclick="deleteUser('${u.username}')" class="text-rose-600 hover:text-rose-800"><i class="fa-solid fa-trash"></i></button>` : '<span class="text-xs text-slate-400">Põhikonto</span>'}
+                    </td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        async function createNewUser() {
+            const u = document.getElementById('newUsername').value.trim();
+            const p = document.getElementById('newPassword').value.trim();
+            const r = document.getElementById('newRole').value;
+
+            if (!u || !p) return;
+            if (serverData.users.some(item => item.username === u)) return;
+
+            serverData.users.push({ username: u, pass: p, role: r });
+            logAction(`Lisas uue kasutaja: ${u} (${r}) / Добавил пользователя: ${u}`);
+            await saveUsersToServer();
+            document.getElementById('newUsername').value = '';
+            document.getElementById('newPassword').value = '';
+            renderUsersTable();
+        }
+
+        async function deleteUser(username) {
+            if (confirm(`Kustutada kasutaja ${username}?`)) {
+                logAction(`Kustutas kasutaja: ${username} / Удалил пользователя: ${username}`);
+                serverData.users = serverData.users.filter(u => u.username !== username);
+                await saveUsersToServer();
+                renderUsersTable();
+            }
+        }
+    </script>
+</body>
+</html>

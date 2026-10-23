@@ -1,0 +1,2318 @@
+{
+  "users": [
+    {
+      "pass": "admin123",
+      "role": "admin",
+      "username": "admin"
+    },
+    {
+      "username": "secretar",
+      "pass": "12345",
+      "role": "editor"
+    }
+  ],
+  "contacts": {
+    "contacts": [
+      {
+        "id": 1,
+        "name": "Kontakt",
+        "role": "",
+        "short": "835",
+        "phone": "35 718 35",
+        "cabinet": "",
+        "department": "Üldine"
+      },
+      {
+        "id": 3,
+        "name": "Üllar Lanno",
+        "role": "Juhatuse liige",
+        "short": "102",
+        "phone": "35 71 802",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 4,
+        "name": "Olev Silland",
+        "role": "Ülemarst",
+        "short": "220",
+        "phone": "35 71 820",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 5,
+        "name": "Oksana Pastuhhova",
+        "role": "Naistekliiniku juhataja",
+        "short": "160",
+        "phone": "35 71 760",
+        "cabinet": "",
+        "department": "Naistekliinik Haigla 1"
+      },
+      {
+        "id": 6,
+        "name": "Natalja Metelitsa",
+        "role": "Ülemõde",
+        "short": "105",
+        "phone": "35 71 805",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 7,
+        "name": "Marina Nikitina",
+        "role": "Ämmaemandusjuhi k.t.",
+        "short": "501",
+        "phone": "35 71 574",
+        "cabinet": "",
+        "department": "Naistekliinik Haigla 1"
+      },
+      {
+        "id": 8,
+        "name": "Jelena Loik",
+        "role": "Õenduskvaliteedi juht",
+        "short": "002",
+        "phone": "35 00 002",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 9,
+        "name": "Irina Tappi",
+        "role": "Sekretär",
+        "short": "526",
+        "phone": "35 60 409",
+        "cabinet": "",
+        "department": "Naistekliinik Haigla 1"
+      },
+      {
+        "id": 10,
+        "name": "Tatjana Kanaš",
+        "role": "Patsiendikogemuse juht",
+        "short": "856",
+        "phone": "35 71856",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 11,
+        "name": "Maia Anufrijeva",
+        "role": "Jurist",
+        "short": "109",
+        "phone": "35 71 809",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 12,
+        "name": "Oleg Astredinov",
+        "role": "IT insener",
+        "short": "6119",
+        "phone": "35 71 819",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 13,
+        "name": "Registratuur  (1 korrus) (469)",
+        "role": "",
+        "short": "",
+        "phone": "35 61 144",
+        "cabinet": "Haigla 1",
+        "department": "Haigla 1"
+      },
+      {
+        "id": 14,
+        "name": "Deniss Hohlov",
+        "role": "IT spetsialistid",
+        "short": "6755",
+        "phone": "35 72 755",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 15,
+        "name": "Andrei Beljaev",
+        "role": "IT spetsialistid",
+        "short": "6554",
+        "phone": "35 60 554",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 16,
+        "name": "Vjatšeslav Obmjotko",
+        "role": "IT spetsialistid",
+        "short": "6810",
+        "phone": "35 71 810",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 17,
+        "name": "Jelena Šiškova",
+        "role": "Arst",
+        "short": "122",
+        "phone": "35 72 122",
+        "cabinet": "kab 11, Vestervalli 15",
+        "department": "Naistekliiniku naistenõuandla (Vestervalli15+Haigla1)"
+      },
+      {
+        "id": 18,
+        "name": "Sergei Zaitsev",
+        "role": "Isikukaitse andmete spetsialist",
+        "short": "6119",
+        "phone": "3571819",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 19,
+        "name": "Ljudmila Ivaštšenko",
+        "role": "Arst",
+        "short": "323",
+        "phone": "35 72 123",
+        "cabinet": "kab 13, Vestervalli 15",
+        "department": "Naistekliiniku naistenõuandla (Vestervalli15+Haigla1)"
+      },
+      {
+        "id": 20,
+        "name": "Kaido Kann",
+        "role": "Ehituse spetsialist",
+        "short": "",
+        "phone": "5014507",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 21,
+        "name": "Valentina Sedova",
+        "role": "Arst",
+        "short": "124",
+        "phone": "35 72 124",
+        "cabinet": "kab 22, Vestervalli 15",
+        "department": "Naistekliiniku naistenõuandla (Vestervalli15+Haigla1)"
+      },
+      {
+        "id": 22,
+        "name": "Kantselei sekretär",
+        "role": "Kantselei sekretär",
+        "short": "100",
+        "phone": "35 71 800",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 23,
+        "name": "Larissa Moltšanova",
+        "role": "Arst",
+        "short": "849",
+        "phone": "35 71 849",
+        "cabinet": "kab 15, Vestervalli 15",
+        "department": "Naistekliiniku naistenõuandla (Vestervalli15+Haigla1)"
+      },
+      {
+        "id": 24,
+        "name": "Ljubov Šabarova",
+        "role": "Arst",
+        "short": "286",
+        "phone": "35 71 786",
+        "cabinet": "kab 17, Vestervalli 15",
+        "department": "Naistekliiniku naistenõuandla (Vestervalli15+Haigla1)"
+      },
+      {
+        "id": 25,
+        "name": "Natalia Merelaid",
+        "role": "Kommunikatsiooni- ja turundusspetsialist",
+        "short": "200",
+        "phone": "3570200",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 26,
+        "name": "Galina Kolubai",
+        "role": "ämmaemand",
+        "short": "527",
+        "phone": "35  618 77",
+        "cabinet": "kab 25, Vestervalli 15",
+        "department": "Naistekliiniku naistenõuandla (Vestervalli15+Haigla1)"
+      },
+      {
+        "id": 27,
+        "name": "Darja Davõdovskaja",
+        "role": "Kantselei juhataja",
+        "short": "285",
+        "phone": "35 717 85",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 28,
+        "name": "i Irina Dontšenko",
+        "role": "Kvaliteedispetsialist",
+        "short": "021",
+        "phone": "35 71 021",
+        "cabinet": "",
+        "department": "Administratsioon Haigla 7"
+      },
+      {
+        "id": 29,
+        "name": "Galina Dimitriadi",
+        "role": "Arst",
+        "short": "863",
+        "phone": "35 718 63",
+        "cabinet": "Haigla 1",
+        "department": "Naistekliiniku naistenõuandla (Vestervalli15+Haigla1)"
+      },
+      {
+        "id": 30,
+        "name": "Alina Sahharova",
+        "role": "Arst",
+        "short": "124",
+        "phone": "35 72 124",
+        "cabinet": "Haigla 1",
+        "department": "Naistekliiniku naistenõuandla (Vestervalli15+Haigla1)"
+      },
+      {
+        "id": 31,
+        "name": "Ülle Politajev",
+        "role": "Personaliteenistuse juhataja",
+        "short": "107",
+        "phone": "35 71 807",
+        "cabinet": "",
+        "department": "Personaliosakond"
+      },
+      {
+        "id": 32,
+        "name": "Aleksandr Mišenkov",
+        "role": "Arst",
+        "short": "863",
+        "phone": "35 718 63",
+        "cabinet": "Haigla 1",
+        "department": "Naistekliiniku naistenõuandla (Vestervalli15+Haigla1)"
+      },
+      {
+        "id": 33,
+        "name": "Personalispetsialist",
+        "role": "Personalispetsialist",
+        "short": "118",
+        "phone": "35 71 818",
+        "cabinet": "",
+        "department": "Personaliosakond"
+      },
+      {
+        "id": 34,
+        "name": "Inna Karjalainen",
+        "role": "Majandusteenistuse peaspetsialist",
+        "short": "",
+        "phone": "35 00 005",
+        "cabinet": "",
+        "department": "Personaliosakond"
+      },
+      {
+        "id": 35,
+        "name": "Jevgeni Gussev",
+        "role": "Puhastusteenistuse juht",
+        "short": "911",
+        "phone": "35 605 26",
+        "cabinet": "",
+        "department": "Personaliosakond"
+      },
+      {
+        "id": 36,
+        "name": "Marina Matvejeva",
+        "role": "ämmaemand",
+        "short": "010",
+        "phone": "3571010",
+        "cabinet": "",
+        "department": "Gestatsiooni diabeedi ämmaemanda vastuvõtt"
+      },
+      {
+        "id": 37,
+        "name": "Majandusala juht Andrei Ivankiv",
+        "role": "",
+        "short": "103",
+        "phone": "35 71 803",
+        "cabinet": "",
+        "department": "Majandusgrupp"
+      },
+      {
+        "id": 38,
+        "name": "Marina Dobrovolskaja",
+        "role": "ämmaemand",
+        "short": "010",
+        "phone": "3571010",
+        "cabinet": "",
+        "department": "Imetamisnõustamise vastuvõtt"
+      },
+      {
+        "id": 39,
+        "name": "Majandusala juhataja Natalja Pirk",
+        "role": "",
+        "short": "115",
+        "phone": "35 71 115",
+        "cabinet": "",
+        "department": "Majandusgrupp"
+      },
+      {
+        "id": 40,
+        "name": "Õmbleja",
+        "role": "Õmbleja",
+        "short": "392",
+        "phone": "35 71 792",
+        "cabinet": "",
+        "department": "Majandusgrupp"
+      },
+      {
+        "id": 41,
+        "name": "Sünnitussaal",
+        "role": "",
+        "short": "528",
+        "phone": "35 60 613",
+        "cabinet": "",
+        "department": "Sünnitus-ja günekoloogia osakond"
+      },
+      {
+        "id": 42,
+        "name": "Juuksur",
+        "role": "Juuksur",
+        "short": "842",
+        "phone": "35 71 842",
+        "cabinet": "",
+        "department": "Majandusgrupp"
+      },
+      {
+        "id": 43,
+        "name": "Valvearst",
+        "role": "",
+        "short": "525",
+        "phone": "35 60 553",
+        "cabinet": "",
+        "department": "Sünnitus-ja günekoloogia osakond"
+      },
+      {
+        "id": 44,
+        "name": "Valvepost",
+        "role": "",
+        "short": "592",
+        "phone": "35 612 41",
+        "cabinet": "",
+        "department": "Sünnitus-ja günekoloogia osakond"
+      },
+      {
+        "id": 45,
+        "name": "Tatjana Azanova",
+        "role": "Köögiplooki juhataja",
+        "short": "389",
+        "phone": "35 71 789",
+        "cabinet": "",
+        "department": "Köök"
+      },
+      {
+        "id": 46,
+        "name": "Lasteõde",
+        "role": "",
+        "short": "145",
+        "phone": "35 715 45",
+        "cabinet": "",
+        "department": "Sünnitus-ja günekoloogia osakond"
+      },
+      {
+        "id": 47,
+        "name": "Ljudmila Soboleva",
+        "role": "Diieti -ja toitumise spetsialist",
+        "short": "769",
+        "phone": "35 71 788",
+        "cabinet": "",
+        "department": "Köök"
+      },
+      {
+        "id": 48,
+        "name": "Alina Sahharova",
+        "role": "Günekoloog",
+        "short": "502",
+        "phone": "35 71 578",
+        "cabinet": "",
+        "department": "Sünnitus-ja günekoloogia osakond"
+      },
+      {
+        "id": 49,
+        "name": "Puhvet",
+        "role": "",
+        "short": "388",
+        "phone": "35 71 838",
+        "cabinet": "",
+        "department": "Köök"
+      },
+      {
+        "id": 50,
+        "name": "Galina Dimitriadi",
+        "role": "Günekoloog",
+        "short": "502",
+        "phone": "35 71 578",
+        "cabinet": "",
+        "department": "Sünnitus-ja günekoloogia osakond"
+      },
+      {
+        "id": 51,
+        "name": "Köögiplokk ja kokad",
+        "role": "",
+        "short": "388",
+        "phone": "35 171 88",
+        "cabinet": "",
+        "department": "Köök"
+      },
+      {
+        "id": 52,
+        "name": "Oksana Pastuhhova",
+        "role": "Günekoloog",
+        "short": "160",
+        "phone": "35 71 760",
+        "cabinet": "",
+        "department": "Sünnitus-ja günekoloogia osakond"
+      },
+      {
+        "id": 53,
+        "name": "Aleksandr Mišenkov",
+        "role": "Günekoloog",
+        "short": "500",
+        "phone": "35 71 566",
+        "cabinet": "",
+        "department": "Sünnitus-ja günekoloogia osakond"
+      },
+      {
+        "id": 54,
+        "name": "protseduuri kabinet",
+        "role": "",
+        "short": "",
+        "phone": "56920910",
+        "cabinet": "nr.403",
+        "department": "Sünnitus-ja günekoloogia osakond"
+      },
+      {
+        "id": 55,
+        "name": "Valeri Korjakin",
+        "role": "Meister",
+        "short": "205",
+        "phone": "35 62 205",
+        "cabinet": "",
+        "department": "Garaaž"
+      },
+      {
+        "id": 56,
+        "name": "Dispetšer",
+        "role": "Dispetšer",
+        "short": "205",
+        "phone": "35 62 205",
+        "cabinet": "",
+        "department": "Garaaž"
+      },
+      {
+        "id": 57,
+        "name": "Veronika Reinhard,AIEK juhataja",
+        "role": "Arst",
+        "short": "035",
+        "phone": "35 00035",
+        "cabinet": "",
+        "department": "Anestesioloogia , intensiivravi  ja erakorralise meditsiini kliinik Haigla 1"
+      },
+      {
+        "id": 58,
+        "name": "Valvemehaanik",
+        "role": "Valvemehaanik",
+        "short": "163",
+        "phone": "35 62 163",
+        "cabinet": "",
+        "department": "Garaaž"
+      },
+      {
+        "id": 59,
+        "name": "Robert Zeel",
+        "role": "Vanemõde",
+        "short": "004",
+        "phone": "35 00004",
+        "cabinet": "",
+        "department": "Anestesioloogia , intensiivravi  ja erakorralise meditsiini kliinik Haigla 1"
+      },
+      {
+        "id": 60,
+        "name": "Perenaine",
+        "role": "",
+        "short": "728",
+        "phone": "35 72 728",
+        "cabinet": "",
+        "department": "Anestesioloogia , intensiivravi  ja erakorralise meditsiini kliinik Haigla 1"
+      },
+      {
+        "id": 61,
+        "name": "Valeri Korjakin",
+        "role": "",
+        "short": "56676702",
+        "phone": "-",
+        "cabinet": "",
+        "department": "Autojuhid"
+      },
+      {
+        "id": 62,
+        "name": "Sekretär",
+        "role": "Sekretär",
+        "short": "854",
+        "phone": "35 718 54",
+        "cabinet": "",
+        "department": "Anestesioloogia , intensiivravi  ja erakorralise meditsiini kliinik Haigla 1"
+      },
+      {
+        "id": 63,
+        "name": "Irina Kortšagina",
+        "role": "",
+        "short": "56562899",
+        "phone": "-",
+        "cabinet": "",
+        "department": "Autojuhid"
+      },
+      {
+        "id": 64,
+        "name": "Aleksandr Krivtsov",
+        "role": "",
+        "short": "58143814",
+        "phone": "-",
+        "cabinet": "",
+        "department": "Autojuhid"
+      },
+      {
+        "id": 65,
+        "name": "Valvearst",
+        "role": "",
+        "short": "295",
+        "phone": "35 717 95",
+        "cabinet": "",
+        "department": "EMO"
+      },
+      {
+        "id": 66,
+        "name": "Vladimir Sassi",
+        "role": "",
+        "short": "58315189",
+        "phone": "-",
+        "cabinet": "",
+        "department": "Autojuhid"
+      },
+      {
+        "id": 67,
+        "name": "Triaažiõde",
+        "role": "",
+        "short": "514",
+        "phone": "35 713 36",
+        "cabinet": "",
+        "department": "EMO"
+      },
+      {
+        "id": 68,
+        "name": "Valveõde",
+        "role": "",
+        "short": "296",
+        "phone": "35 717 96",
+        "cabinet": "",
+        "department": "EMO"
+      },
+      {
+        "id": 69,
+        "name": "Ortopeed",
+        "role": "",
+        "short": "735",
+        "phone": "35 727 35",
+        "cabinet": "",
+        "department": "EMO"
+      },
+      {
+        "id": 70,
+        "name": "Medtehnik",
+        "role": "",
+        "short": "338",
+        "phone": "35 61 538",
+        "cabinet": "",
+        "department": "Autojuhid"
+      },
+      {
+        "id": 71,
+        "name": "Ortopeedi esmase vastuvõtu õde",
+        "role": "",
+        "short": "001",
+        "phone": "35 000 01",
+        "cabinet": "",
+        "department": "EMO"
+      },
+      {
+        "id": 72,
+        "name": "Töökeskkonna spetsialist Jelena Skugar",
+        "role": "",
+        "short": "111",
+        "phone": "35 71 811",
+        "cabinet": "",
+        "department": "Autojuhid"
+      },
+      {
+        "id": 73,
+        "name": "Vanemarsti k.t Sergei Kazakov",
+        "role": "",
+        "short": "516",
+        "phone": "35 715 23",
+        "cabinet": "",
+        "department": "Anestesioloogia-ja intensiivravi osakond"
+      },
+      {
+        "id": 74,
+        "name": "Maalrid",
+        "role": "",
+        "short": "753",
+        "phone": "35 72 753",
+        "cabinet": "",
+        "department": "Remondi-tehniline grupp"
+      },
+      {
+        "id": 75,
+        "name": "Svetlana Dolgopolova",
+        "role": "Vastutav õde",
+        "short": "515",
+        "phone": "35 714 47",
+        "cabinet": "",
+        "department": "Anestesioloogia-ja intensiivravi osakond"
+      },
+      {
+        "id": 76,
+        "name": "Puusepp",
+        "role": "",
+        "short": "399",
+        "phone": "35 71 799",
+        "cabinet": "",
+        "department": "Remondi-tehniline grupp"
+      },
+      {
+        "id": 77,
+        "name": "Valveõde",
+        "role": "",
+        "short": "517",
+        "phone": "35 715 22",
+        "cabinet": "",
+        "department": "Anestesioloogia-ja intensiivravi osakond"
+      },
+      {
+        "id": 78,
+        "name": "Hapnikuseadmete spetsialist",
+        "role": "",
+        "short": "394",
+        "phone": "35 71 794",
+        "cabinet": "",
+        "department": "Remondi-tehniline grupp"
+      },
+      {
+        "id": 79,
+        "name": "Anesteesiaõed                            53 737 990",
+        "role": "",
+        "short": "855",
+        "phone": "35 718 55",
+        "cabinet": "",
+        "department": "Anestesioloogia-ja intensiivravi osakond"
+      },
+      {
+        "id": 80,
+        "name": "Elektrikud",
+        "role": "",
+        "short": "754",
+        "phone": "35 72 754",
+        "cabinet": "",
+        "department": "Remondi-tehniline grupp"
+      },
+      {
+        "id": 81,
+        "name": "Valveanestesioloog                    52 844 57",
+        "role": "",
+        "short": "484",
+        "phone": "35 611 84",
+        "cabinet": "",
+        "department": "Anestesioloogia-ja intensiivravi osakond"
+      },
+      {
+        "id": 82,
+        "name": "Kojamehed",
+        "role": "",
+        "short": "391",
+        "phone": "35 71 791",
+        "cabinet": "",
+        "department": "Remondi-tehniline grupp"
+      },
+      {
+        "id": 83,
+        "name": "OPI anestesioloog",
+        "role": "",
+        "short": "770",
+        "phone": "35 717 70",
+        "cabinet": "",
+        "department": "Anestesioloogia-ja intensiivravi osakond"
+      },
+      {
+        "id": 84,
+        "name": "Ärkamisruum",
+        "role": "",
+        "short": "749",
+        "phone": "35 727 49",
+        "cabinet": "",
+        "department": "Anestesioloogia-ja intensiivravi osakond"
+      },
+      {
+        "id": 85,
+        "name": "Pearaamatupidaja, finansiosakonna juhataja Olga Togatova",
+        "role": "",
+        "short": "106",
+        "phone": "35 71 806",
+        "cabinet": "",
+        "department": "Finantsosakond"
+      },
+      {
+        "id": 86,
+        "name": "Anestesioloogi ambulatoorne vastuvõtt (, )",
+        "role": "",
+        "short": "845",
+        "phone": "3571845",
+        "cabinet": "kab.144, 1 korrus",
+        "department": "Anestesioloogia-ja intensiivravi osakond"
+      },
+      {
+        "id": 87,
+        "name": "Vastutav raamatupidaja",
+        "role": "",
+        "short": "812",
+        "phone": "35 71 812",
+        "cabinet": "",
+        "department": "Finants-materiaalgrupp"
+      },
+      {
+        "id": 88,
+        "name": "juht Jevgeni Gužovski",
+        "role": "Kiirabiosakonna",
+        "short": "271",
+        "phone": "35 71 771",
+        "cabinet": "",
+        "department": "Kiirabiosakond"
+      },
+      {
+        "id": 89,
+        "name": "Raamatupidaja",
+        "role": "",
+        "short": "812",
+        "phone": "35 71 812",
+        "cabinet": "",
+        "department": "Finants-materiaalgrupp"
+      },
+      {
+        "id": 90,
+        "name": "Autojuhtide tuba",
+        "role": "",
+        "short": "273",
+        "phone": "35 71 773",
+        "cabinet": "",
+        "department": "Kiirabiosakond"
+      },
+      {
+        "id": 91,
+        "name": "Raamatupidaja Jelena Koroljova",
+        "role": "",
+        "short": "113",
+        "phone": "35 71 813",
+        "cabinet": "",
+        "department": "Finants-materiaalgrupp"
+      },
+      {
+        "id": 92,
+        "name": "Valved",
+        "role": "",
+        "short": "272",
+        "phone": "35 71 772",
+        "cabinet": "",
+        "department": "Kiirabiosakond"
+      },
+      {
+        "id": 93,
+        "name": "Kassa",
+        "role": "",
+        "short": "117",
+        "phone": "35 71 817",
+        "cabinet": "",
+        "department": "Finants-materiaalgrupp"
+      },
+      {
+        "id": 94,
+        "name": "Kirurgia kliiniku juhataja k.t Igor Nechipor",
+        "role": "Arst",
+        "short": "506",
+        "phone": "35 61 789",
+        "cabinet": "",
+        "department": "Kirurgiakliinik"
+      },
+      {
+        "id": 95,
+        "name": "Raamatupidajad",
+        "role": "",
+        "short": "114",
+        "phone": "35 71 814",
+        "cabinet": "",
+        "department": "Palgaarveldusgrupp"
+      },
+      {
+        "id": 96,
+        "name": "Kirurgiakliiniku ülemõde Natalja Tarasjuk",
+        "role": "",
+        "short": "507",
+        "phone": "35 61 897",
+        "cabinet": "kab 507",
+        "department": "Kirurgiakliinik"
+      },
+      {
+        "id": 97,
+        "name": "Ariina Smirnova",
+        "role": "Vastutav õde",
+        "short": "228",
+        "phone": "35 71 828",
+        "cabinet": "",
+        "department": "Kirurgiakliinik"
+      },
+      {
+        "id": 98,
+        "name": "Vanemökonomist",
+        "role": "",
+        "short": "108",
+        "phone": "35 71 808",
+        "cabinet": "",
+        "department": "Raviteenuste grupp"
+      },
+      {
+        "id": 99,
+        "name": "Perenaine",
+        "role": "",
+        "short": "519",
+        "phone": "35 713 37",
+        "cabinet": "",
+        "department": "Kirurgiakliinik"
+      },
+      {
+        "id": 100,
+        "name": "Raviteenuste operaatorid",
+        "role": "",
+        "short": "485",
+        "phone": "35 61 185",
+        "cabinet": "",
+        "department": "Raviteenuste grupp"
+      },
+      {
+        "id": 101,
+        "name": "Sekretär",
+        "role": "Sekretär",
+        "short": "731",
+        "phone": "35 72 731",
+        "cabinet": "",
+        "department": "Kirurgiakliinik"
+      },
+      {
+        "id": 102,
+        "name": "Med.statistika Ella Oskolkova",
+        "role": "",
+        "short": "274",
+        "phone": "35 71 774",
+        "cabinet": "",
+        "department": "Statistika Haigla 9"
+      },
+      {
+        "id": 103,
+        "name": "ide tuba ( kirurgid) 5 korrus",
+        "role": "Arst",
+        "short": "508",
+        "phone": "35 61 958",
+        "cabinet": "",
+        "department": "Kirurgiaosakond"
+      },
+      {
+        "id": 104,
+        "name": "Arhiiv",
+        "role": "",
+        "short": "780",
+        "phone": "3571780",
+        "cabinet": "",
+        "department": "Statistika Haigla 9"
+      },
+      {
+        "id": 105,
+        "name": "ide tuba (ortopeed)  5 korrus",
+        "role": "Arst",
+        "short": "512",
+        "phone": "35 71 437",
+        "cabinet": "",
+        "department": "Kirurgiaosakond"
+      },
+      {
+        "id": 106,
+        "name": "ide tuba (LOR) Konnov 5 korrus",
+        "role": "Arst",
+        "short": "847",
+        "phone": "35 71 847",
+        "cabinet": "",
+        "department": "Kirurgiaosakond"
+      },
+      {
+        "id": 107,
+        "name": "Apteegi juhataja  proviisor Jelena Pekareva",
+        "role": "",
+        "short": "209",
+        "phone": "35 60 609",
+        "cabinet": "",
+        "department": "Haiglapteek Haigla 9"
+      },
+      {
+        "id": 108,
+        "name": "Valveõe post I",
+        "role": "",
+        "short": "509",
+        "phone": "35 71 290",
+        "cabinet": "",
+        "department": "Kirurgiaosakond"
+      },
+      {
+        "id": 109,
+        "name": "Retseptuur",
+        "role": "",
+        "short": "268",
+        "phone": "35 71 768",
+        "cabinet": "",
+        "department": "Haiglapteek Haigla 9"
+      },
+      {
+        "id": 110,
+        "name": "Valveõe post II",
+        "role": "",
+        "short": "438",
+        "phone": "35 60 218",
+        "cabinet": "",
+        "department": "Kirurgiaosakond"
+      },
+      {
+        "id": 111,
+        "name": "Protseduuri kabinet",
+        "role": "",
+        "short": "730",
+        "phone": "35 72 730",
+        "cabinet": "",
+        "department": "Kirurgiaosakond"
+      },
+      {
+        "id": 112,
+        "name": "Jekaterina Nešpanova",
+        "role": "Infektsioonikontrolli arst",
+        "short": "",
+        "phone": "53312076",
+        "cabinet": "kab.121",
+        "department": "Infektsioonikontrolli kabinet (Haigla 5)"
+      },
+      {
+        "id": 113,
+        "name": "3570772 intensiiv",
+        "role": "",
+        "short": "772",
+        "phone": "35 707 72",
+        "cabinet": "",
+        "department": "Kirurgiaosakond"
+      },
+      {
+        "id": 114,
+        "name": "Anastassia Gorškova",
+        "role": "Vastutav õde",
+        "short": "607",
+        "phone": "35 48 607",
+        "cabinet": "nr 121, Haigla 5",
+        "department": "Infektsioonikontrolli kabinet (Haigla 5)"
+      },
+      {
+        "id": 115,
+        "name": "Anatoli Šiškov kirurg-endoskopist",
+        "role": "Arst",
+        "short": "834",
+        "phone": "35 71 834",
+        "cabinet": "",
+        "department": "Kirurgiaosakond"
+      },
+      {
+        "id": 116,
+        "name": "Vastutav operatsiooniõde  Nailja Leskina",
+        "role": "",
+        "short": "415",
+        "phone": "35 61 115",
+        "cabinet": "",
+        "department": "Operatsiooniplokk"
+      },
+      {
+        "id": 117,
+        "name": "Operatsioonituba I",
+        "role": "",
+        "short": "518",
+        "phone": "35 71 295",
+        "cabinet": "",
+        "department": "Operatsiooniplokk"
+      },
+      {
+        "id": 118,
+        "name": "Aleksandr Aniskov",
+        "role": "Juhataja",
+        "short": "907",
+        "phone": "35 72 785",
+        "cabinet": "",
+        "department": "Radioloogia osakond"
+      },
+      {
+        "id": 119,
+        "name": "Julia Reinas, vanemradioloogiatehnik",
+        "role": "",
+        "short": "832",
+        "phone": "35 71 832",
+        "cabinet": "",
+        "department": "Radioloogia osakond"
+      },
+      {
+        "id": 120,
+        "name": "Operatsioonituba II",
+        "role": "",
+        "short": "519",
+        "phone": "35 71 318",
+        "cabinet": "",
+        "department": "Operatsiooniplokk"
+      },
+      {
+        "id": 121,
+        "name": "Polikliiniline röntgen (, )",
+        "role": "",
+        "short": "905",
+        "phone": "35 72 783",
+        "cabinet": "kab 146, Haigla 1",
+        "department": "Radioloogia osakond"
+      },
+      {
+        "id": 122,
+        "name": "Sterilatsiooni labor",
+        "role": "",
+        "short": "370",
+        "phone": "35 71 779",
+        "cabinet": "",
+        "department": "Operatsiooniplokk"
+      },
+      {
+        "id": 123,
+        "name": "Röntgen (, )",
+        "role": "",
+        "short": "521",
+        "phone": "35 71 749",
+        "cabinet": "kab 129, Haigla 1",
+        "department": "Radioloogia osakond"
+      },
+      {
+        "id": 124,
+        "name": "Tomograaf ( , )",
+        "role": "",
+        "short": "322",
+        "phone": "35 66 022",
+        "cabinet": "kab 131, Haigla 1",
+        "department": "Radioloogia osakond"
+      },
+      {
+        "id": 125,
+        "name": "Kirurg-kuraator  Vjatseslav Nuzdin 5 korrus, 508 kab",
+        "role": "Arst",
+        "short": "510",
+        "phone": "3571358",
+        "cabinet": "",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 126,
+        "name": "Mammograaf, запись на MRT, денситометрия (измерение плотности костей) ( , )",
+        "role": "",
+        "short": "737",
+        "phone": "35 72 737",
+        "cabinet": "kab 142, Haigla 5",
+        "department": "Radioloogia osakond"
+      },
+      {
+        "id": 127,
+        "name": "Kirurgid (Nuždin,Nechipor,Al-Momani, d-r Lapatko ) Krumgolts,Khegai , 6 korrus, 601 kab",
+        "role": "Arst",
+        "short": "489",
+        "phone": "35 61 189",
+        "cabinet": "Haigla 1",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 128,
+        "name": "Ultraheli (, )",
+        "role": "",
+        "short": "337",
+        "phone": "35 71 698",
+        "cabinet": "kab 145, Haigla 1",
+        "department": "Radioloogia osakond"
+      },
+      {
+        "id": 129,
+        "name": "Uroolog Sergei Luts , 6 korrus, 602 kab",
+        "role": "Arst",
+        "short": "857",
+        "phone": "35 71 857",
+        "cabinet": "Haigla 1",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 130,
+        "name": "Radioloog Sana Pascaline",
+        "role": "Arst",
+        "short": "908",
+        "phone": "35 72 786",
+        "cabinet": "",
+        "department": "Radioloogia osakond"
+      },
+      {
+        "id": 131,
+        "name": "Radiloogiakliinik sekretär Aleksandra Mets",
+        "role": "",
+        "short": "717",
+        "phone": "3571117",
+        "cabinet": "",
+        "department": "Radioloogia osakond"
+      },
+      {
+        "id": 132,
+        "name": "Otorinolarüngoloog Tatjana Pajuste, , 3 korrus",
+        "role": "Arst",
+        "short": "919",
+        "phone": "35 72 748",
+        "cabinet": "Nr 320, Vestervalli 15",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 133,
+        "name": "Irina Melnikova",
+        "role": "Laboriosakonna juhataja",
+        "short": "376",
+        "phone": "35 71 776",
+        "cabinet": "",
+        "department": "Laboriosakond Haigla 3"
+      },
+      {
+        "id": 134,
+        "name": "Haavaraviõde Irina  Vesselova, , 142 kab",
+        "role": "",
+        "short": "866",
+        "phone": "35 70 866",
+        "cabinet": "Haigla 1",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 135,
+        "name": "Olga Gudkina",
+        "role": "Vanem med.laborant",
+        "short": "375",
+        "phone": "35 71 775",
+        "cabinet": "",
+        "department": "Laboriosakond Haigla 3"
+      },
+      {
+        "id": 136,
+        "name": "Ambulatoorsed  ortopeedid: Vladimir Tarahtin,   Anatoli Kogan, Evgenii Tcarkov,Sergei Shestakov, , 141 kab",
+        "role": "Arst",
+        "short": "853",
+        "phone": "35 71 853",
+        "cabinet": "Haigla 1",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 137,
+        "name": "Kliinilise keemia ja  Immunoloogia labor",
+        "role": "",
+        "short": "378",
+        "phone": "35 71 778",
+        "cabinet": "",
+        "department": "Laboriosakond Haigla 3"
+      },
+      {
+        "id": 138,
+        "name": "Sidumistuba, , 139 kab",
+        "role": "",
+        "short": "141",
+        "phone": "35 70 141",
+        "cabinet": "Haigla 1",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 139,
+        "name": "Hematoloogia labor",
+        "role": "",
+        "short": "377",
+        "phone": "35 71 777",
+        "cabinet": "",
+        "department": "Laboriosakond Haigla 3"
+      },
+      {
+        "id": 140,
+        "name": "Üldkirurg Vjatseslav Kardava , 1 k",
+        "role": "Arst",
+        "short": "912",
+        "phone": "35 72 773",
+        "cabinet": "kab. 138",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 141,
+        "name": "Mikrobioloogia labor",
+        "role": "",
+        "short": "837",
+        "phone": "35 71 837",
+        "cabinet": "",
+        "department": "Laboriosakond Haigla 3"
+      },
+      {
+        "id": 142,
+        "name": "Uroloogiaõde Alina Reznitsenko , 6 korrus, 602 kab",
+        "role": "",
+        "short": "857",
+        "phone": "35 718 57",
+        "cabinet": "Haigla 1",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 143,
+        "name": "Verekabinet",
+        "role": "",
+        "short": "287",
+        "phone": "35 71 787",
+        "cabinet": "",
+        "department": "Laboriosakond Haigla 3"
+      },
+      {
+        "id": 144,
+        "name": "LOR Svirgun ( , 3 k,  )",
+        "role": "Arst",
+        "short": "736",
+        "phone": "35 727 36",
+        "cabinet": "Nr 309, Haigla1",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 145,
+        "name": "Info labor ja valve laborantid",
+        "role": "",
+        "short": "334",
+        "phone": "35 613 34",
+        "cabinet": "",
+        "department": "Laboriosakond Haigla 3"
+      },
+      {
+        "id": 146,
+        "name": "LOR Konnov ( , 3 k, )",
+        "role": "Arst",
+        "short": "736",
+        "phone": "35 727 36",
+        "cabinet": "Nr 309, Haigla1",
+        "department": "Kirurgia kliiniku ambulatoorne osakond"
+      },
+      {
+        "id": 147,
+        "name": "TÜK labor",
+        "role": "",
+        "short": "",
+        "phone": "7 318 316",
+        "cabinet": "",
+        "department": "Laboriosakond Haigla 3"
+      },
+      {
+        "id": 148,
+        "name": "Sisekliiniku juhataja Veronika Iljina",
+        "role": "Arst",
+        "short": "223",
+        "phone": "35 71 823",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 149,
+        "name": "Tsütoloogiline labor",
+        "role": "",
+        "short": "284",
+        "phone": "35 71 784",
+        "cabinet": "",
+        "department": "Patoloogiaosakond"
+      },
+      {
+        "id": 150,
+        "name": "Rimma Sinkova",
+        "role": "Vanemõde",
+        "short": "225",
+        "phone": "35 71 825",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 151,
+        "name": "Niina Dalinger",
+        "role": "Vastutav õde",
+        "short": "140",
+        "phone": "35 79 140",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 152,
+        "name": "Surnukuur Narva",
+        "role": "",
+        "short": "283",
+        "phone": "35 71 783",
+        "cabinet": "",
+        "department": "Patoloogiaosakond"
+      },
+      {
+        "id": 153,
+        "name": "Veera Grigorjeva",
+        "role": "Vastutav õde",
+        "short": "839",
+        "phone": "35 71839",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 154,
+        "name": "Sekretär",
+        "role": "Sekretär",
+        "short": "221",
+        "phone": "35 71 821",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 155,
+        "name": "Histoloogiline labor",
+        "role": "",
+        "short": "282",
+        "phone": "35 71 782",
+        "cabinet": "",
+        "department": "Patoloogiaosakond"
+      },
+      {
+        "id": 156,
+        "name": "Sekretär",
+        "role": "Sekretär",
+        "short": "843",
+        "phone": "35 71 843",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 157,
+        "name": "Perenaine  Abramova Olga, Zahharova Olga",
+        "role": "",
+        "short": "751",
+        "phone": "35 72 751",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 158,
+        "name": "idetuba  Tetiana Slavkina, Anna Varankina  - ,  1 korrus",
+        "role": "Arst",
+        "short": "0 0 3",
+        "phone": "3500003",
+        "cabinet": "Haigla 5",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 159,
+        "name": "Galina Kuznetsova",
+        "role": "Vanemõde",
+        "short": "192",
+        "phone": "35 790 92",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 160,
+        "name": "idetuba  Jelena Losseva  - ,  2 korrus",
+        "role": "Arst",
+        "short": "227",
+        "phone": "35 71 827",
+        "cabinet": "Haigla 5",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 161,
+        "name": "Natalya Ivanova",
+        "role": "Vastutav õde",
+        "short": "194",
+        "phone": "35 790 94",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 162,
+        "name": "Õepost 1.korrus",
+        "role": "",
+        "short": "222",
+        "phone": "35 71 822",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 163,
+        "name": "Perenaine  Marina Pyryaeva",
+        "role": "",
+        "short": "190",
+        "phone": "35 790 90",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 164,
+        "name": "Õepost 1.korrus",
+        "role": "",
+        "short": "224",
+        "phone": "35 718 24",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 165,
+        "name": "Koduõendus",
+        "role": "",
+        "short": "191",
+        "phone": "35 790 91",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 166,
+        "name": "Intensiivpalat",
+        "role": "",
+        "short": "513",
+        "phone": "35 714 40",
+        "cabinet": "1 korrus",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 167,
+        "name": "Sotsiaaltöötaja Jelena Penkova",
+        "role": "",
+        "short": "195",
+        "phone": "35 790 95",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 168,
+        "name": "Õepost 2.korrus",
+        "role": "",
+        "short": "226",
+        "phone": "35 71 826",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 169,
+        "name": "Larissa Jelissejeva",
+        "role": "Arst-konsultant",
+        "short": "196",
+        "phone": "35 790 96",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 170,
+        "name": "Õepost 2.korrus",
+        "role": "",
+        "short": "298",
+        "phone": "35 717 98",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 171,
+        "name": "Valve õde I korrus",
+        "role": "",
+        "short": "198",
+        "phone": "35 790 98",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 172,
+        "name": "Ehhokardiograafia Jelena Perova, , k.220,  2 kor.",
+        "role": "Arst",
+        "short": "332",
+        "phone": "35 61 632",
+        "cabinet": "Haigla 5",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 173,
+        "name": "Valve õde II korrus",
+        "role": "",
+        "short": "324",
+        "phone": "35 712 24",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 174,
+        "name": "Funktsionaaldiagnostika  . EKG, holter.  k. 221",
+        "role": "",
+        "short": "315",
+        "phone": "35 60 615",
+        "cabinet": "Haigla 5",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 175,
+        "name": "Valve õde III korrus",
+        "role": "",
+        "short": "344",
+        "phone": "35 71 344",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 176,
+        "name": "Funktsionaaldiagnostika kabinet  (FDK), arstid",
+        "role": "",
+        "short": "385",
+        "phone": "35 61 785",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 177,
+        "name": "Sekretar Darja Kuznetsova",
+        "role": "",
+        "short": "193",
+        "phone": "35 790 93",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 178,
+        "name": "Sotsiaaltöötaja Ekaterina Zubkova",
+        "role": "",
+        "short": "449",
+        "phone": "35 42 449",
+        "cabinet": "",
+        "department": "Sisekliinik"
+      },
+      {
+        "id": 179,
+        "name": "Lilia Novikova (hospiits)",
+        "role": "Arst",
+        "short": "",
+        "phone": "35 479 00",
+        "cabinet": "",
+        "department": "Õendusabiosakond Haigla 1"
+      },
+      {
+        "id": 180,
+        "name": "Õepost",
+        "role": "",
+        "short": "230",
+        "phone": "35 71 830",
+        "cabinet": "",
+        "department": "Lastehaiguste post"
+      },
+      {
+        "id": 181,
+        "name": "ide tuba Marina Kondrateva, Olga Tingajeva",
+        "role": "Arst",
+        "short": "231",
+        "phone": "35 71 831",
+        "cabinet": "",
+        "department": "Lastehaiguste post"
+      },
+      {
+        "id": 182,
+        "name": "Julia Volodchenko",
+        "role": "vanemfüsioterapeut",
+        "short": "143",
+        "phone": "35 61 143",
+        "cabinet": "kab 227, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 183,
+        "name": "Laste osakonna vanemarst Tatjana Timakova",
+        "role": "",
+        "short": "859",
+        "phone": "35 71859",
+        "cabinet": "",
+        "department": "Lastehaiguste post"
+      },
+      {
+        "id": 184,
+        "name": "Antonina Fjodorova",
+        "role": "füsioterapeut",
+        "short": "741",
+        "phone": "35 727 41",
+        "cabinet": "kab 217, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 185,
+        "name": "Angelina Fjodorova",
+        "role": "füsioterapeut",
+        "short": "921",
+        "phone": "3572794",
+        "cabinet": "kab 222, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 186,
+        "name": "Nelli Gorkova",
+        "role": "füsioterapeut",
+        "short": "262",
+        "phone": "35 612 62",
+        "cabinet": "kab 224, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 187,
+        "name": "Tetiana Slavkina nakkushaiguste osakonna koordinaator",
+        "role": "Arst",
+        "short": "275",
+        "phone": "35 72708",
+        "cabinet": "",
+        "department": "Nakkushaiguste osakond"
+      },
+      {
+        "id": 188,
+        "name": "Niina Moskaltšuk",
+        "role": "füsioterapeut",
+        "short": "199",
+        "phone": "35 790 99",
+        "cabinet": "kab 229, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 189,
+        "name": "ide tuba 1.korrus  Anatoli Zelenjuk",
+        "role": "Arst",
+        "short": "116",
+        "phone": "35 71816",
+        "cabinet": "",
+        "department": "Nakkushaiguste osakond"
+      },
+      {
+        "id": 190,
+        "name": "Nikita Tkatšuk, õendusabi osakond",
+        "role": "füsioterapeut",
+        "short": "-",
+        "phone": "-",
+        "cabinet": "",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 191,
+        "name": "Nakkushaiguste osakonda õepost",
+        "role": "",
+        "short": "804",
+        "phone": "35 48804",
+        "cabinet": "",
+        "department": "Nakkushaiguste osakond"
+      },
+      {
+        "id": 192,
+        "name": "Artur Lõvi",
+        "role": "füsioterapeut",
+        "short": "-",
+        "phone": "-",
+        "cabinet": "",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 193,
+        "name": "logopeed Irina Balabanova",
+        "role": "",
+        "short": "104",
+        "phone": "35 71 804",
+        "cabinet": "kab 233, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 194,
+        "name": "aparaatne füsioteraapia ja mudaravi",
+        "role": "",
+        "short": "836",
+        "phone": "35 71 836",
+        "cabinet": "kab 238, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 195,
+        "name": "massaažikabinet  Alla Abrossimova",
+        "role": "",
+        "short": "846",
+        "phone": "35 71 846",
+        "cabinet": "kab 231, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 196,
+        "name": "massaažikabinet Jelena Reshemkina",
+        "role": "",
+        "short": "739",
+        "phone": "35 72739",
+        "cabinet": "kab 232, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 197,
+        "name": "Kindlustamata isiku kabineti arst Anzhela Pryma",
+        "role": "",
+        "short": "852",
+        "phone": "35 71 852",
+        "cabinet": "kab 306",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 198,
+        "name": "taastusravi arst Natalia Moskaljova",
+        "role": "",
+        "short": "949",
+        "phone": "35 92 149",
+        "cabinet": "kab 34, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 199,
+        "name": "Dermatoveneroloog Olga Maslova",
+        "role": "Arst",
+        "short": "442",
+        "phone": "35 60 442",
+        "cabinet": "kab. 220",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 200,
+        "name": "spordiarst  Natalia Moskaljova",
+        "role": "",
+        "short": "314",
+        "phone": "35 71 314",
+        "cabinet": "kab 35, Vestervalli 15",
+        "department": "Taastusraviosakond, 2.korrus/ Vestervalli 15"
+      },
+      {
+        "id": 201,
+        "name": "Jalaravi kabineti õde Larissa Šakirova",
+        "role": "",
+        "short": "218",
+        "phone": "35 61 418",
+        "cabinet": "kab 33",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 202,
+        "name": "Gastroenteroloog Ljudmila Kaletina 208",
+        "role": "Arst",
+        "short": "914",
+        "phone": "35 72 775",
+        "cabinet": "",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 203,
+        "name": "Kardioloog Olga Averina",
+        "role": "Arst",
+        "short": "909",
+        "phone": "35 72 787",
+        "cabinet": "kab 211",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 204,
+        "name": "Kardioloog  Nadežda Lüter",
+        "role": "Arst",
+        "short": "418",
+        "phone": "35 61 118",
+        "cabinet": "kab 212",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 205,
+        "name": "Kardioloog Jevegeni Ivanov",
+        "role": "Arst",
+        "short": "210",
+        "phone": "35 77 210",
+        "cabinet": "kab 214",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 206,
+        "name": "Endokrinoloog  Elena Makarikova",
+        "role": "Arst",
+        "short": "910",
+        "phone": "35 60 527",
+        "cabinet": "kab 243",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 207,
+        "name": "Amb.vastuvõtt  Andrei Lossev",
+        "role": "Arst",
+        "short": "800",
+        "phone": "35 47 900",
+        "cabinet": "kab.310",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 208,
+        "name": "Amb.vastuvõtt Lilia Novikova, 311",
+        "role": "Arst",
+        "short": "800",
+        "phone": "35 47 900",
+        "cabinet": "",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 209,
+        "name": "Olga Harak",
+        "role": "Vanemõde",
+        "short": "902",
+        "phone": "35 72 780",
+        "cabinet": "kab.241, Vestervalli 15",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 210,
+        "name": "OKR kabinet",
+        "role": "",
+        "short": "424",
+        "phone": "35 44 224",
+        "cabinet": "kab. 316",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 211,
+        "name": "Anna Erova                       tel. 58587292",
+        "role": "Sekretär",
+        "short": "915",
+        "phone": "35 727 76",
+        "cabinet": "",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 212,
+        "name": "Psühholoog Irina Semenyuk",
+        "role": "",
+        "short": "729",
+        "phone": "35 727 29",
+        "cabinet": "kab.9a",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 213,
+        "name": "Töötervishoiuarst Perenõuandla kabinet Vladislav Babkov",
+        "role": "Arst",
+        "short": "913",
+        "phone": "35 72 774",
+        "cabinet": "kab.202",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 214,
+        "name": "Vaimse tervise kabinet õde Jelena Kangas",
+        "role": "",
+        "short": "881",
+        "phone": "35 71 881",
+        "cabinet": "kab 301",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 215,
+        "name": "Med.läbivaatuste kabinet ja autojuhi tervisekontrolli",
+        "role": "",
+        "short": "906",
+        "phone": "35 72 784",
+        "cabinet": "kabinet 319",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 216,
+        "name": "Psühhiaater  Andrei Taškin",
+        "role": "Arst",
+        "short": "233",
+        "phone": "35 44 233",
+        "cabinet": "kab.6",
+        "department": "Sisekliiniku ambulatoorne osakond Vestervalli 15"
+      },
+      {
+        "id": 217,
+        "name": "Autojuhi tervisekontrolli kabinet Vladislav Babkov",
+        "role": "Arst",
+        "short": "913",
+        "phone": "35 72 774",
+        "cabinet": "",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 218,
+        "name": "Vaktsineerimiskeskus",
+        "role": "",
+        "short": "",
+        "phone": "54502474",
+        "cabinet": "kab.242",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 219,
+        "name": "Tromboosi ja kardioloogiaõde Olga Zernova",
+        "role": "",
+        "short": "490",
+        "phone": "35 61 190",
+        "cabinet": "kab.207",
+        "department": "Psühhiaater  dr. E. Maron,   kab.5"
+      },
+      {
+        "id": 220,
+        "name": "Protseduuri kabinet, 2 korrus",
+        "role": "",
+        "short": "923",
+        "phone": "35 726 19",
+        "cabinet": "kab.203",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 221,
+        "name": "Vaimse tervise kabinet õde Jelena Kangas",
+        "role": "",
+        "short": "881",
+        "phone": "35 71 881",
+        "cabinet": "kab 301",
+        "department": "Psühhiaater  dr. E. Maron,   kab.5"
+      },
+      {
+        "id": 222,
+        "name": "Protseduuri kabinet, 2 korrus",
+        "role": "",
+        "short": "",
+        "phone": "35 630 03",
+        "cabinet": "kab.204",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 223,
+        "name": "Psühhiaater  Andrei Taškin",
+        "role": "Arst",
+        "short": "233",
+        "phone": "35 44 233",
+        "cabinet": "kab.6",
+        "department": "Psühhiaater  dr. E. Maron,   kab.5"
+      },
+      {
+        "id": 224,
+        "name": "Anonüümse testmise kabinet",
+        "role": "",
+        "short": "304",
+        "phone": "35 60 304",
+        "cabinet": "kab. 313",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 225,
+        "name": "Juhtumikorraldusõde",
+        "role": "",
+        "short": "803",
+        "phone": "35 48 803",
+        "cabinet": "kab.313",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 226,
+        "name": "Sotsiaaltöötaja, 9a",
+        "role": "",
+        "short": "039",
+        "phone": "35 42 039",
+        "cabinet": "",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 227,
+        "name": "Psüholoog Jevgeni Gadalšin",
+        "role": "",
+        "short": "150",
+        "phone": "35 61 050",
+        "cabinet": "kab. 9",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 228,
+        "name": "aneemia õde/toitumisnõustaja, J. Tomberg",
+        "role": "",
+        "short": "",
+        "phone": "3571149",
+        "cabinet": "kab 307",
+        "department": "sisearst Kostjuk, kab. 9"
+      },
+      {
+        "id": 229,
+        "name": "Sotsiaaltöötaja Jelena Penkova ( Õendusabiosakond , )",
+        "role": "",
+        "short": "195",
+        "phone": "35 790 95",
+        "cabinet": "Haigla 1",
+        "department": "Tervise- ja heaolukeskus Vestervalli 15"
+      },
+      {
+        "id": 230,
+        "name": "endokrinoloogia õde  M. Filatova",
+        "role": "",
+        "short": "258",
+        "phone": "3570258",
+        "cabinet": "kab 304",
+        "department": "sisearst Kostjuk, kab. 9"
+      },
+      {
+        "id": 231,
+        "name": "KIRURG",
+        "role": "",
+        "short": "5180280",
+        "phone": "-",
+        "cabinet": "",
+        "department": "VALVE ARSTID"
+      },
+      {
+        "id": 232,
+        "name": "NAISTEARST",
+        "role": "",
+        "short": "51900835",
+        "phone": "-",
+        "cabinet": "",
+        "department": "VALVE ARSTID"
+      },
+      {
+        "id": 233,
+        "name": "Kopsuarst ja kopsuõde",
+        "role": "",
+        "short": "140",
+        "phone": "35 79 140",
+        "cabinet": "kab. 123",
+        "department": "Sisekliiniku ambulatoorne osakond Haigla 5"
+      },
+      {
+        "id": 234,
+        "name": "SISEARST",
+        "role": "",
+        "short": "5255483",
+        "phone": "-",
+        "cabinet": "",
+        "department": "VALVE ARSTID"
+      },
+      {
+        "id": 235,
+        "name": "Lastearstide amb.vastuvõtt Tatjana Timakova, Marina Kondrateva, Olga Tingaeva",
+        "role": "Arst",
+        "short": "229",
+        "phone": "35 71 829",
+        "cabinet": "kab. 124",
+        "department": "Sisekliiniku ambulatoorne osakond Haigla 5"
+      },
+      {
+        "id": 236,
+        "name": "EMO",
+        "role": "",
+        "short": "56489621",
+        "phone": "-",
+        "cabinet": "",
+        "department": "VALVE ARSTID"
+      },
+      {
+        "id": 237,
+        "name": "Nefroloog Julia Piel, A. Timofeev",
+        "role": "",
+        "short": "140",
+        "phone": "35 79140",
+        "cabinet": "kab.124",
+        "department": "Sisekliiniku ambulatoorne osakond Haigla 5"
+      },
+      {
+        "id": 238,
+        "name": "ANESTESIOLOOG",
+        "role": "",
+        "short": "5284457",
+        "phone": "-",
+        "cabinet": "",
+        "department": "VALVE ARSTID"
+      },
+      {
+        "id": 239,
+        "name": "Kardioloog Natalja Vakulina (KSM)",
+        "role": "",
+        "short": "229",
+        "phone": "35 71 829",
+        "cabinet": "kab. 124",
+        "department": "Sisekliiniku ambulatoorne osakond Haigla 5"
+      },
+      {
+        "id": 240,
+        "name": "KONDRATJEVA, MARINA",
+        "role": "",
+        "short": "58490030",
+        "phone": "-",
+        "cabinet": "",
+        "department": "LASTEARSTID:"
+      },
+      {
+        "id": 241,
+        "name": "Onkoloog - ginekoloog ., 2 korrus",
+        "role": "",
+        "short": "888",
+        "phone": "35 70 888",
+        "cabinet": "kab. 220",
+        "department": "Onkohematoloogia keskus (TÜK) Haigla 1"
+      },
+      {
+        "id": 242,
+        "name": "TIMAKOVA,TATJANA",
+        "role": "",
+        "short": "5298907",
+        "phone": "-",
+        "cabinet": "",
+        "department": "LASTEARSTID:"
+      },
+      {
+        "id": 243,
+        "name": "Onkoloogid , 2 korrus",
+        "role": "",
+        "short": "723",
+        "phone": "35 71 723",
+        "cabinet": "kab. 221",
+        "department": "Onkohematoloogia keskus (TÜK) Haigla 1"
+      },
+      {
+        "id": 244,
+        "name": "TINGAJEVA, OLGA",
+        "role": "",
+        "short": "53316031",
+        "phone": "-",
+        "cabinet": "",
+        "department": "LASTEARSTID:"
+      },
+      {
+        "id": 245,
+        "name": "post",
+        "role": "",
+        "short": "870",
+        "phone": "35 71 870",
+        "cabinet": "",
+        "department": "Onkohematoloogia keskus (TÜK) Haigla 1"
+      },
+      {
+        "id": 246,
+        "name": "Kontakt",
+        "role": "",
+        "short": "5581334",
+        "phone": "-",
+        "cabinet": "",
+        "department": "LASTEARSTID:"
+      },
+      {
+        "id": 247,
+        "name": "TARAHTIN,VLADIMIR",
+        "role": "",
+        "short": "56616343",
+        "phone": "-",
+        "cabinet": "",
+        "department": "ORTOPEEDID:"
+      },
+      {
+        "id": 248,
+        "name": "Kontakt",
+        "role": "",
+        "short": "56617999",
+        "phone": "-",
+        "cabinet": "",
+        "department": "ORTOPEEDID:"
+      },
+      {
+        "id": 249,
+        "name": "Dialüüs, 6 korrus RENALIS OÜ",
+        "role": "",
+        "short": "",
+        "phone": "3592199",
+        "cabinet": "",
+        "department": "Onkohematoloogia keskus (TÜK) Haigla 1"
+      },
+      {
+        "id": 250,
+        "name": "KOGAN,ANATOLI",
+        "role": "",
+        "short": "53469368",
+        "phone": "-",
+        "cabinet": "",
+        "department": "ORTOPEEDID:"
+      },
+      {
+        "id": 251,
+        "name": "Kontakt",
+        "role": "",
+        "short": "",
+        "phone": "3592083",
+        "cabinet": "",
+        "department": "Onkohematoloogia keskus (TÜK) Haigla 1"
+      },
+      {
+        "id": 252,
+        "name": "TSARKOV,EVGENI",
+        "role": "",
+        "short": "53998774",
+        "phone": "-",
+        "cabinet": "",
+        "department": "ORTOPEEDID:"
+      },
+      {
+        "id": 253,
+        "name": "SHESTAKOV,SERGEI",
+        "role": "",
+        "short": "55571094",
+        "phone": "-",
+        "cabinet": "",
+        "department": "ORTOPEEDID:"
+      }
+    ],
+    "history": [
+      {
+        "user": "admin",
+        "action": "Kustutas töötaja ID №254 (\"fhdfhdf\") / Удалил сотрудника ID №254 (\"fhdfhdf\")",
+        "time": "22.10.2026, 12:19:46"
+      },
+      {
+        "user": "admin",
+        "action": "Lisas uue töötaja ID №254 (\"fhdfhdf\") / Добавил сотрудника ID №254 (\"fhdfhdf\")",
+        "time": "22.10.2026, 12:19:36"
+      },
+      {
+        "user": "admin",
+        "action": "Kustutas töötaja ID №2 (\"Registratuur  (1 korrus) (469)\") / Удалил сотрудника ID №2 (\"Registratuur  (1 korrus) (469)\")",
+        "time": "22.10.2026, 12:19:05"
+      },
+      {
+        "user": "admin",
+        "action": "Muutis töötaja ID №7 (\"Marina Nikitina\") / Изменил сотрудника ID №7 (\"Marina Nikitina\")",
+        "time": "22.10.2026, 12:17:00"
+      },
+      {
+        "user": "admin",
+        "action": "Impordis uue Exceli faili (253 kontakti) / Импортировал Excel (253 конт.)",
+        "time": "22.10.2026, 12:16:34"
+      },
+      {
+        "user": "admin",
+        "action": "Kustutas kõik kontaktid baasist / Удалил все контакты",
+        "time": "22.10.2026, 12:16:30"
+      }
+    ]
+  }
+}
