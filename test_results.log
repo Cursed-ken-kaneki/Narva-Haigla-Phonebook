@@ -1,0 +1,42 @@
+data backup saved -> db.json.bak-test
+server started, pid 16336
+users: [('admin', 'admin', 'scrypt:32768:8:1$SpXb3EkYPFPlKaQh$f'), ('secretar', 'editor', 'scrypt:32768:8:1$Faio9WgAzROE0hFX$a')]
+contacts type: list
+history len: 0
+MIGRATION OK
+anon contacts: 403
+bad login: 401
+admin login: 200
+verify: {'authenticated': True, 'role': 'admin', 'username': 'admin'}
+CSP: True | XFO: DENY | nosniff: nosniff
+users in data: [{'role': 'admin', 'username': 'admin'}, {'role': 'editor', 'username': 'secretar'}]
+xss data save: 200
+editor login: 200
+editor users POST: 403
+editor contacts POST: 200
+admin relogin: 200
+self-demote: 400
+add users: 200
+short pass rejected: 400
+no-admin rejected: 400
+dup rejected: 400
+bad username rejected: 400
+fail 1 401
+fail 2 401
+fail 3 401
+fail 4 401
+fail 5 401
+fail 6 429
+old pass after change: 401
+new pass: 200
+after logout: {'authenticated': False}
+ALL TESTS PASSED
+data restored from backup
+--- server stdout (last 2000 chars) ---
+==========================================================
+  Phonebook server started!
+  Open in browser:
+      http://127.0.0.1:8090/
+  (for LAN colleagues: http://<your-IP>:8090/)
+  Stop: Ctrl+C
+==========================================================
